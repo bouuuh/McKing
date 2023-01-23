@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commander - McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour">
+<h2 class="title-category">Commander</h2>
+<div class="container-category">
+
+{% for category in category %}
+<a href="{{ path('category_slug', { 'slug' : category.slug }) }} "class='category-btn'>
+<div class='category'>
+    
+    <div>
+        <img src="/uploads/{{ category.visual }}" alt="{{ category.name }}">
+    </div>
+    <div>
+        {{ category.name }}
+    </div>
+   
+
+</div>
+ </a>
+{% endfor %} 
+</div>
+</div>
+{% endblock %}
+{% block navBar %}
+    
+{% endblock %}

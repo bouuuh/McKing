@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category_slug.name }}- McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour">
+<h2 class="title-category">Commander</h2>
+<div class="container-category">
+
+{# Catégorie menu #}
+{% for menus in menus %}
+<a href="" class='category-btn'>
+<div class='category'>
+    
+    <div>
+        <img src="/uploads/{{ menus.visual }}" alt="{{ menus.name }}" >
+    </div>
+    <div>
+        {{ menus.name }}
+    </div>
+   
+</div>  
+</a>
+    
+
+
+{% endfor %}
+
+{# Produits normaux #}
+{% for products in products %} 
+{% if products.category == category_slug %}
+<a href="" class='category-btn'>
+<div class='category'>
+    
+    <div>
+        <img src="/uploads/{{ products.visual }}" alt="{{ products.name }}" >
+    </div>
+    <div>
+        {{ products.name }}
+        <div class='price'>{{ (products.price / 100)|number_format(2, ',', '.') }} €</div>
+    </div>
+   
+</div>  
+</a>
+{% endif %}
+ {% endfor %} 
+</div>
+</div>
+{% endblock %}
+{% block navBar %}
+    
+{% endblock %}

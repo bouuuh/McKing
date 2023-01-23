@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - McKing{% endblock %}
+
+
+{% block content %}
+<div class="around">
+<div class="container-register">
+    <div class="register-logo">
+    <img src="{{ asset('assets/images/Logo.svg') }}">
+    </div>
+    <div  class="content-register">
+    {{ form(form) }}
+    </div>
+    <div class="connect">
+    <p>Déjà membre ? <a href="{{ path('login') }}">Connectez-vous ici</a>.</p>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}
