@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier - McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour2">
+    <h1 class="cart-title">Panier</h1>
+
+    <div class="container-cart">
+
+    {% if cart|length > 0 %}
+        
+        {% set total = null %}
+          
+        
+        
+         {% for product in cart %}
+
+         {% if product.menu != null %}
+{# Pour les menus #}
+
+        <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ product.menu.visual }}" alt="{{ product.menu.name }}">
+            </div>
+            <div class="cart-info">
+                {{ product.menu.name }}
+                <br>
+                {{ ( product.quantity / 100)|number_format(2, ',', '.') }} €
+            </div>
+            <div class="cart-info">
+                {{ product.quantity }}
+            </div>
+            <div class="cart-delete">
+                <a href="{{ path('delete_to_cart', { 'slug' : product.menu.slug }) }}">
+                    <img src="{{ asset('assets/images/Bin.svg') }}" alt="Supprimer produit">
+                </a> 
+            </div>
+        </div>
+        <div class="details-menu">
+        - frites <br>
+        - burger <br>
+        - boisson <br>
+        </div>
+
+
+
+         
+         {% elseif product.product != null %}
+{# Pour les produits #}
+
+        <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ product.product.visual }}" alt="{{ product.product.name }}">
+            </div>
+            <div class="cart-info">
+                {{ product.product.name }}
+                <br>
+                {{ (product.product.price * product.quantity / 100)|number_format(2, ',', '.') }} €
+            </div>
+            <div class="cart-info">
+                {{ product.quantity }}
+            </div>
+            <div class="cart-delete">
+                <a href="{{ path('delete_to_cart', { 'slug' : product.product.slug }) }}">
+                    <img src="{{ asset('assets/images/Bin.svg') }}" alt="Supprimer produit">
+                </a> 
+            </div>
+        </div>
+        {% set total = total + (product.product.price * product.quantity) %} 
+
+
+
+         
+         {% endif %}
+         
+        
+            
+        
+        
+        
+         {% endfor %} 
+
+        <div class="cart-total">
+            <p>Total</p><span>{{ (total / 100)|number_format(2, ',', '.') }} €</span>
+        </div>
+        <div class="cart-paid">
+            <a href="">Payer</a>
+        </div>
+    {% else %}
+    <p class="cart-empty">Votre panier est vide, ajouter des produits pour qu'il se remplisse !</p>
+    <div class="cart-empty-btn">
+    <a href="{{ path('category') }}">Ajouter des produits</a>
+    </div>
+    {% endif %}
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}

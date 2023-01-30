@@ -1,3 +1,89 @@
-<pre>
-    {{ dump(product_slug) }}
-</pre>
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}- McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class='contour2'>
+
+<a href="/commander/{{ category.slug }} {#permet de revenir à la page précédente#}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
+
+
+<div class="menu-content">
+    {#********************TITRE********************#}
+    <h1 class="product_title">{{ product.name }}</h2>
+    {#********************IMAGE PRODUIT********************#}
+    <div class="img_product">
+        <img src="/uploads/{{ product.visual }}" alt="{{ product.name }}" >
+    </div>
+    {#********************PRIX********************#}
+    <div class="product_price">
+        {{ (product.price / 100)|number_format(2, ',', '.') }} €
+    </div>
+    {#********************AJOUT AU PANIER********************#}
+    <div class="order-cart-add">
+            <a href="{{ path('add_to_cart', { 'slug' : product.slug }) }}" class="order-cart-btn-add">
+                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Ajouter au panier">
+            </a>
+        </div>
+    {#********************DESCRIPTION********************#}    
+        
+    <div class="list-menu">
+        <div class="list-menu-title">
+            <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+            <p>Description</p>
+        </div>
+        <div class="list-menu-content">
+            <div>
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+
+    {#********************ALLERGENES********************#}
+    {% if product.allergies != null %}
+    <div class="list-menu">
+        <div class="list-menu-title">
+            <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+            <p>Allergènes</p>
+        </div>
+        <div class="list-menu-content">
+            <div>
+                {{ product.allergies }}
+            </div>
+        </div>    
+    </div>
+    {% endif %}
+</div>
+</div> 
+<script>
+
+var arrowbottom = document.querySelectorAll('.img-list-menu');
+var titlelist = document.querySelectorAll('.list-menu-title');
+var contentlist = document.querySelectorAll('.list-menu-content');
+
+console.log(contentlist)
+
+    for( let i = 0; i < arrowbottom.length ; i++ ){
+    titlelist[i].addEventListener('click', () => {
+        if(arrowbottom[i].getAttribute('src') === '/assets/images/arrowbottom.svg'){
+            contentlist[i].style.display = 'none';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowtop.svg') }}");
+            
+        } else {
+            contentlist[i].style.display = 'flex';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowbottom.svg') }}");
+        }
+
+    })
+    } 
+
+</script>
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}
+   

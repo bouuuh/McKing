@@ -36,6 +36,15 @@ class Product
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergies = null;
 
+    #[ORM\Column]
+    private ?int $quantity = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $size = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $kids = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +130,42 @@ class Product
     public function setAllergies(?string $allergies): self
     {
         $this->allergies = $allergies;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(?string $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    public function isKids(): ?bool
+    {
+        return $this->kids;
+    }
+
+    public function setKids(?bool $kids): self
+    {
+        $this->kids = $kids;
 
         return $this;
     }

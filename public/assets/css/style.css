@@ -15,8 +15,8 @@
     padding-top: 3vh;
     padding-bottom: 1vh;
 }
-.headerBar img {
-    height: 15vh;
+.logo-of-header img {
+    height: 10vh;
     width: auto;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
@@ -55,13 +55,23 @@
 span {
     color: red;
 }
-
+.logo-and-cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 0.5vw 0 0.5vw;
+}
+.logo-and-cart div {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}
 /************************** Bottom NavBar ***********************/
 
-.navBar {
+.thenavBar {
     position: fixed;
     display: flex;
-    flex-direction: row;
     width: 100%;
     bottom: 0;
     justify-content: space-around;
@@ -74,18 +84,26 @@ span {
     width: 100%;
     height: 100%;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     box-shadow: inset -8px 0 10px -6px #000000;
-    padding-top: 1.7vh;
+    padding-top: 1.5vh;
     background-color: #F7F7F7;
 }
-.case p {
+.case a p {
     color:#E31B00;
     font-size: 1.5vh;
     font-family: 'Lilita One', cursive;
 }
+.case a {
+    text-decoration: none;
+}
 
-.icon_navBar {
+.case5 {
+    box-shadow: none;
+}
+
+.icon_thenavBar {
     height: 5.5vh;
     width: auto;
     opacity: 0.8;
@@ -94,17 +112,23 @@ span {
 .burger{
     height: 5vh;
     width: auto;
+}
+.Commander {
+    margin-bottom: -1.2vh;
     
+    margin-left: auto;
+    margin-right: auto;
 }
-.Commander{
-    margin-bottom: -2.7vh;
+.Commander div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-.Compte{
+.Compte {
     box-shadow: none;
 }
 
-.Home, .Compte, .Map, .Fidelite{
+.Home, .Compte, .Map, .Fidelite {
     padding-bottom: 1.7vh;
 }
 
@@ -276,6 +300,7 @@ span {
 .contour{
     background-color: #e4e4e4;
     padding-bottom: 8vh;
+    margin-top: -0.1vh;
 }
 .category div {
     display: flex;
@@ -285,4 +310,155 @@ span {
 .price{
     font-size: 2vh;
     font-family: 'Signika', sans-serif;
+}
+
+/**************Produit**************/
+
+.product_title {
+    text-align: center;
+    font-family: 'Lilita One', cursive;
+    font-size: 4vh;
+}
+
+.img_product {
+    display: flex;
+    justify-content: center;
+}
+
+.product_price {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lilita One', cursive;
+    font-size: 4vh;
+}
+
+.order-cart-btn-add {
+    background-color: #F09F01;
+    height: 6vh;
+    width: 6vh;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+
+.order-cart-btn-add img {
+    height: 3vh;
+}
+
+.order-cart-add {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+/**************Panier**************/
+
+.cart-title {
+    font-family: 'Lilita One', cursive;
+    font-size: 4vh;
+    margin-left: 10vw;
+}
+
+.cart {
+    background-color: #F7F7F7;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 2vh;
+    border-radius: 20px;
+    width: 90vw;
+    height: 10vh;
+}
+
+.cart img {
+    height: 8vh;
+}
+
+.cart-info {
+    display: flex;
+    justify-content: center;
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+    width: 100%;
+}
+
+.cart-total {
+    width: 90vw;
+    height: 10vh;
+    background-color: #E31B00;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.cart-total p {
+    font-size: 4vh;
+    text-transform: uppercase;
+    font-family: 'Lilita One', cursive;
+    color: white;
+}
+
+.cart-total span {
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+    color: white;
+}
+
+.cart-paid {
+    background-color: #F09F01;
+    display: flex;
+    width: 20vw;
+    height: 3vh;
+    justify-content: center;
+    border-radius: 40px;
+    margin-left: 75vw;
+    margin-top: 1vh;
+}
+
+.cart-paid a {
+    color: white;
+    text-decoration: none;
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+}
+
+.cart-delete {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cart-delete img {
+    height: 3vh;
+}
+
+.cart-empty {
+    text-align: center;
+    font-size: 3vh;
+    font-family: 'Signika', sans-serif;
+    margin-top: 20vh;
+}
+
+.cart-empty-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 5vh;
+    width: 60vw;
+    background-color: #E31B00;
+    border-radius: 20px;
+    margin-top: 10vh;
+}
+
+.cart-empty-btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 3vh;
+    font-family: 'Lilita One', cursive;
 }

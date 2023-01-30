@@ -26,7 +26,18 @@
 {# header #}
 {% if block('header') is defined %}       
     <div class="headerBar">
-        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo">
+    <div class="logo-and-cart">
+    <div></div>
+    <div class="logo-of-header">
+    <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo">
+    </div>
+        <div class="order-cart">
+            <a href="{{ path('cart') }}" class="order-cart-btn">
+                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Panier">
+            </a>
+        </div>
+    </div>
+        
 
         {% if app.user %}
 
@@ -56,7 +67,7 @@
         <div></div>
         <div class="order-logo"><img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo"></div>
         <div class="order-cart">
-            <a href="" class="order-cart-btn">
+            <a href="{{ path('cart') }}" class="order-cart-btn">
                 <img src="{{ asset('assets/images/Cart.svg') }}" alt="Panier">
             </a>
         </div>
@@ -66,6 +77,8 @@
 {% endif %}
 
 
+
+
 {% block content %}
 
    
@@ -73,38 +86,31 @@
 
 
 {% if block('navBar') is defined %}
-    <div class="navBar">
+    <div class="thenavBar">
 
-        <div class="case Home">
-
-            <img class="icon_navBar" src="{{ asset('assets/images/Home.svg') }}">
-
+        <div class="case ">
+            <a href="{{ path('home') }}" class="Home"><img class="icon_thenavBar" src="{{ asset('assets/images/Home.svg') }}"></a>
         </div>
 
-        <div class="case Map">
-
-            <img class="icon_navBar" src="{{ asset('assets/images/Map.svg') }}">
-
+        <div class="case ">
+            <a href="{{ path('map') }}" class="Map"><img class="icon_thenavBar" src="{{ asset('assets/images/Map.svg') }}"></a>
         </div>
 
-        <div class="case Commander">
-
-           <img class="icon_navBar burger" src="{{ asset('assets/images/Commander.svg') }}">
-
-            <p>Commander</p>
-
+        <div class="case">
+            <a href="{{ path('category') }}" class="Commander">
+            <div>
+                <img class="icon_thenavBar burger" src="{{ asset('assets/images/Commander.svg') }}">
+                <p>Commander</p>
+            </div>
+            </a>
         </div>
 
-        <div class="case Fidelite">
-
-            <img class="icon_navBar" src="{{ asset('assets/images/Fidelite.svg') }}">
-
+        <div class="case ">
+            <a href="{{ path('loyalty') }}" class="Fidelite"><img class="icon_thenavBar" src="{{ asset('assets/images/Fidelite.svg') }}"></a>
         </div>
 
-        <div class="case Compte">
-
-            <img class="icon_navBar" src="{{ asset('assets/images/Compte.svg') }}">
-
+        <div class="case case5">
+            <a href="" class="Compte"><img class="icon_thenavBar" src="{{ asset('assets/images/Compte.svg') }}"></a>
         </div>
 
     </div>

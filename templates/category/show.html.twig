@@ -6,13 +6,17 @@
 {% endblock %}
 
 {% block content %}
+
+
+
 <div class="contour">
+<a href="{{ path('category') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt=""></a>
 <h2 class="title-category">Commander</h2>
 <div class="container-category">
 
 {# Catégorie menu #}
 {% for menus in menus %}
-<a href="" class='category-btn'>
+<a href="{{ path('menu', { 'slug' : menus.slug }) }}" class='category-btn'>
 <div class='category'>
     
     <div>
@@ -32,7 +36,7 @@
 {# Produits normaux #}
 {% for products in products %} 
 {% if products.category == category_slug %}
-<a href="" class='category-btn'>
+<a href="{{ path('product', { 'category' : category_slug.slug, 'slug' : products.slug }) }}" class='category-btn'>
 <div class='category'>
     
     <div>

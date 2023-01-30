@@ -48,3 +48,83 @@
     text-decoration: none;
     font-family: 'Signika', sans-serif;
 }
+.arrow{
+    margin-left: 2vw;
+    
+}
+.arrow img {
+    height: 3vh;
+    margin-bottom: 1vh;
+}
+.contour2{
+    background-color: #e4e4e4;
+    display: flex;
+    flex-direction: column;
+    margin-top: -0.2vh;
+    min-height: 90vh;
+    padding-bottom: 10vh;
+}
+.menu-visual{
+    height: 20vh;
+    background-color: #e4e4e4;
+}
+.menu-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.title-menu{
+    font-family: 'Lilita One', cursive;
+    text-transform: uppercase;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    font-size: 3.5vh;
+}
+.list-menu{
+    background-color: #F7F7F7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    margin-top: 3vh;
+    padding-top: 1vh;
+    width: 85vw;
+
+}
+.list-menu p{
+    font-family: 'Lilita One', cursive;
+    text-transform: uppercase;
+    font-size: 2.5vh;
+}
+.list-menu-content{
+    display: flex;
+    flex-direction: column;
+}
+.list-menu-title{
+     display: flex;
+     align-items: baseline;
+     padding: 1vh;
+     margin-bottom: -0.5vh;
+}
+.list-menu-title img{
+    margin: 0 1.5vh 0 1.5vh;
+    height: 1.5vh;
+    
+}
+.list-menu-content div {
+    font-size: 2.5vh;
+    font-family: 'Signika', sans-serif;
+    margin: 2vh 2vh 2vh 2vh;
+    display: flex;
+    align-items: center;
+}
+.list-menu-content div label {
+    margin-left: 2.5vh;
+}
+.list-menu-content div input {
+    width: 2.5vh;
+    height: 2.5vh;
+    accent-color: #F09F01;
+}
+.display-style{
+    display: none;
+}

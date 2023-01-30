@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ menus.name }}- McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour2">
+    <a href="/commander/menus" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt=""></a>
+    <div class="menu-content">
+    <h2 class="title-menu">Menu {{ menus.name }}</h2>
+        <img src="/uploads/{{ menus.visual }}" alt="{{ menus.name }}" class="menu-visual">
+
+        {% set formHtml %}
+        {{ form_start(form) }}
+            {{ form_label(form.burger, 'Burger') }}
+        {{ form_end(form) }}
+        {% endset %}
+
+{###################### BURGERS ######################}
+    <div class="list-menu">
+    <div class="list-menu-title">
+    <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="" class="img-list-menu">
+        <p>Burgers</p>
+    </div>
+        <div class="list-menu-content">
+        {% for products in products %}
+        {% if menus.name != "McKing Kids" and (products.category == 'Burgers' or (products.category == 'Snacks' and products.size != 0)) %}
+        <div>
+            <input type="radio" name="burgers" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% elseif menus.name == "McKing Kids" and products.kids == 1 and (products.category == 'Burgers' or products.category == 'Snacks') %}
+        <div>
+            <input type="radio" name="burgers" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+
+    {###################### SNACK ######################}
+    {% if menus.name == 'McKing Platine' %}
+    <div class="list-menu">
+    <div class="list-menu-title">
+    <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="" class="img-list-menu">
+        <p>Snack</p>
+    </div>
+        <div class="list-menu-content">
+        {% for products in products %}
+        {% if products.category == "Snacks" and products.size == 1 %}
+        <div>
+            <input type="radio" name="snack" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+
+        {% endif %}
+        {% endfor %}    
+                </div>
+    </div>
+    {% endif %}
+
+
+    {###################### BOISSONS ######################}
+    
+    <div class="list-menu">
+    <div class="list-menu-title">
+    <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="" class="img-list-menu">
+        <p>Boissons</p>
+    </div>
+        <div class="list-menu-content">
+        {% for products in products %}
+        {% if menus.name == 'McKing' and (products.category == 'Boissons' and (products.size == 1 or products.size == 3)) %}
+        <div>
+            <input type="radio" name="boissons" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% elseif (menus.name == 'Maxi McKing' or menus.name == 'McKing Platine') and (products.category == 'Boissons' and (products.size == 2 or products.size == 3)) %}
+        <div>
+            <input type="radio" name="boissons" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% elseif menus.name == 'McKing Kids' and (products.category == 'Boissons' and (products.size == 0 or products.size == 3)) %}
+        <div>
+            <input type="radio" name="boissons" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+    {###################### SAUCES ######################}
+    
+    <div class="list-menu">
+    <div class="list-menu-title">
+    <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="" class="img-list-menu">
+        <p>Sauces</p>
+    </div>
+        <div class="list-menu-content">
+        {% for products in products %}
+        {% if products.category == 'Sauces' %}
+        <div>
+            <input type="radio" name="sauces" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+    
+    {###################### DESSERT ######################}
+    {% if menus.name == 'McKing Kids' %}
+    <div class="list-menu">
+    <div class="list-menu-title">
+    <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="" class="img-list-menu">
+        <p>Dessert</p>
+    </div>
+        <div class="list-menu-content">
+        {% for products in products %}
+        {% if products.category == "Desserts" and products.kids == 1 %}
+        <div>
+            <input type="radio" name="dessert" value="{{ products.name }}">
+            <label for="{{ products.name }}">{{ products.name }}</label>
+        </div>
+
+        {% endif %}
+        {% endfor %}    
+                </div>
+    </div>
+    {% endif %}
+
+
+    </div>
+    <div class="order-cart-add">
+            <a href="{{ path('add_menu_to_cart', { 'slug' : menus.slug }) }}" class="order-cart-btn-add">
+                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Ajouter au panier">
+            </a>
+        </div>
+
+</div>
+
+<script>
+
+var arrowbottom = document.querySelectorAll('.img-list-menu');
+var titlelist = document.querySelectorAll('.list-menu-title');
+var contentlist = document.querySelectorAll('.list-menu-content');
+
+    for( let i = 0; i < arrowbottom.length ; i++ ){
+    titlelist[i].addEventListener('click', () => {
+        if(arrowbottom[i].getAttribute('src') === '/assets/images/arrowbottom.svg'){
+            contentlist[i].style.display = 'none';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowtop.svg') }}");
+            
+        } else {
+            contentlist[i].style.display = 'flex';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowbottom.svg') }}");
+        }
+
+})
+} 
+
+</script>
+
+
+
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}
+
