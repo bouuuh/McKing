@@ -4,6 +4,9 @@
     padding: 0;
     
 }
+.headerBar-around{
+    background-color: #e4e4e4;
+}
 .headerBar{
     height: 32vh;
     width: 100vw;
@@ -86,7 +89,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: inset -8px 0 10px -6px #000000;
+    box-shadow: inset -8px 10px 10px -6px #494949;
     padding-top: 1.5vh;
     background-color: #F7F7F7;
 }
@@ -100,7 +103,7 @@ span {
 }
 
 .case5 {
-    box-shadow: none;
+    box-shadow: inset 0px 10px 10px -6px #494949;
 }
 
 .icon_thenavBar {
@@ -130,6 +133,18 @@ span {
 
 .Home, .Compte, .Map, .Fidelite {
     padding-bottom: 1.7vh;
+}
+
+/*************** Inscription ************/
+
+.illustration-home {
+    margin: auto;
+    margin-top: 1vh;
+}
+
+.illustration-home img {
+    height: 22vh;
+    width: auto;
 }
 
 /*************** Inscription ************/
@@ -301,6 +316,7 @@ span {
     background-color: #e4e4e4;
     padding-bottom: 8vh;
     margin-top: -0.1vh;
+    min-height: 80vh;
 }
 .category div {
     display: flex;
@@ -336,6 +352,7 @@ span {
     background-color: #F09F01;
     height: 6vh;
     width: 6vh;
+    border: none;
     border-radius: 100px;
     display: flex;
     justify-content: center;
@@ -355,7 +372,11 @@ span {
 }
 
 /**************Panier**************/
-
+.container-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .cart-title {
     font-family: 'Lilita One', cursive;
     font-size: 4vh;
@@ -383,6 +404,7 @@ span {
     font-size: 2vh;
     font-family: 'Lilita One', cursive;
     width: 100%;
+    text-align: center;
 }
 
 .cart-total {
@@ -394,7 +416,10 @@ span {
     align-items: center;
     margin: auto;
     border-radius: 20px;
+    bottom: 15vh;
+    position: fixed;
 }
+
 
 .cart-total p {
     font-size: 4vh;
@@ -409,6 +434,7 @@ span {
     color: white;
 }
 
+
 .cart-paid {
     background-color: #F09F01;
     display: flex;
@@ -418,6 +444,8 @@ span {
     border-radius: 40px;
     margin-left: 75vw;
     margin-top: 1vh;
+    bottom: 10vh;
+    position: fixed;
 }
 
 .cart-paid a {
@@ -461,4 +489,440 @@ span {
     color: white;
     font-size: 3vh;
     font-family: 'Lilita One', cursive;
+}
+
+/**************Fidélité**************/
+
+.logo-loyalty {
+    margin: auto;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.logo-loyalty img {
+    height: 8vh;
+}
+
+.loyalty-point {
+    text-align: center;
+    font-family: 'Lilita One', cursive; 
+    font-size: 2vh;
+}
+
+.arround-loyalty {
+    height: 75vh;
+    width: 90vw;
+    background-color: #F09F01;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.arround-loyalty p {
+    color: white;
+    font-family: 'Lilita One', cursive; 
+    font-size: 3vh;
+    padding: 3vh 3vw;
+}
+
+.loyalty-content {
+    height: 22vh;
+    width: 50vw;
+    background-color: #E31B00;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 1vh;
+}
+
+.loyalty-content h1 {
+    color: white;
+    text-align: center;
+    font-size: 4vh;
+    font-family: 'Lilita One', cursive; 
+    padding-top: 2vh;
+}
+
+.loyalty-content p {
+    padding-top: 4vh;
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.loyalty-text {
+    text-align: center;
+}
+
+.menu-img {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-img img {
+    height: 15vh;
+}
+
+.loyalty-register-btn {
+    background-color: #E31B00;
+    border-radius: 20px;
+    height: 5vh;
+    width: 30vw;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loyalty-register-btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive; 
+}
+
+/**************Mon Compte**************/
+
+.account-title {
+    font-size: 3vh;
+    font-family: 'Lilita One', cursive; 
+    text-transform: uppercase;
+    margin-left: 11vw;
+    margin-bottom: 2vh;
+}
+
+.account-case {
+    height: 10vh;
+    width: 80vw;
+    background-color: #F7F7F7;
+    margin: 2vh;
+    border-radius: 20px;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.account-case img {
+    height: 3vh;
+    margin: auto 2vw auto 2vw;
+}
+
+.account-case a {
+    text-decoration: none;
+}
+
+.account-case p {
+    font-size: 2.2vh;
+    font-family: 'Lilita One', cursive; 
+    text-transform: uppercase;
+    color: #000000;
+    margin: auto 0 auto 0;
+}
+.contour-account{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/**************Mes informations**************/
+
+.info-title {
+    font-size: 3vh;
+    font-family: 'Lilita One', cursive; 
+    text-transform: uppercase;
+    margin-left: 9vw;
+    margin-bottom: 4vh;
+}
+
+.p-info {
+    font-size: 2.5vh;
+    font-family: 'Lilita One', cursive; 
+    margin-left: 11vw;
+    text-transform: uppercase;
+}
+
+.contour-info-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-account-case {
+    margin: 2vh auto;
+    background-color: #F7F7F7;
+    height: 10vh;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.info-account-case p {
+    font-size: 2.6vh;
+    font-family: 'Signika', sans-serif;
+   
+}
+
+.change-password {
+    background-color: #F09F01;
+    height: 5vh;
+    width: 60vw;
+    margin: 2vh auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+
+.change-password a {
+    text-decoration: none;
+    color: white;
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+}
+
+/**************Modifier mdp**************/
+.password-info p {
+    font-size: 3vh;
+}
+
+.form-password {
+    height: 13vh;
+    width: 85vw;
+    background-color: #F7F7F7;
+    margin: auto;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+
+.label-password {
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+    text-transform: uppercase;
+}
+
+.input-password {
+    width: 60vw;
+    height: 4vh;
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 1.5vh;
+    border: none;
+    background-color: #c5c5c5;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.10));
+}
+
+.submit-change-password {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-change-password button {
+    border-radius: 20px;
+    font-family: 'Lilita One', cursive;
+    background-color: #F09F01;
+    color: white;
+    height: 5vh;
+    width: 60vw;
+    font-size: 2vh;
+    border: none;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+/*************************** Recap de commandes ***************************/
+#order_place_1{
+    opacity: 0;
+  position: fixed;
+  width: 0;
+}
+#order_place_0{
+    opacity: 0;
+  position: fixed;
+  width: 0;
+}
+.contour3{
+    margin-top: -0.5vh;
+    background-color: #e4e4e4;
+    min-height: 85vh;
+}
+.form-place{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart-total2{
+    width: 90vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+}
+.cart-total2 p {
+    font-size: 4vh;
+    text-transform: uppercase;
+    font-family: 'Lilita One', cursive;
+    color: #4c4c4c;
+}
+
+.cart-total2 span {
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+    color: #4c4c4c;
+}
+.order-submit{
+    text-decoration: none;
+}
+.order-submit div{ 
+    bottom: 10vh;
+    background-color: #F09F01;
+    color: #f8f8f8;
+    width: 55vw;
+    height: 5vh;
+    border-radius: 40px;
+    border: none;
+    font-size: 2vh;
+    font-family: 'Lilita One';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+.button-order-final{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10vh;
+}
+.recap-title{
+    font-family: 'Lilita One';
+    font-size: 3vh;
+    text-transform: uppercase;
+    margin: 1vh 0 2vh 2vh;
+}
+.form-place form {
+    display: flex;
+    flex-direction: column;
+}
+.btn-place  {
+    display: flex;
+    justify-content: center;
+}
+.btn-place label{
+    padding: 1vh 2vw;
+    display: flex;
+    background-color: #F7F7F7;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif, Arial;
+    font-size: 3vh;
+    border: 0.1vh solid #989898;
+    color: #494949;
+    margin-bottom: 2vh;
+    margin-top: 4vh;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-family: 'Lilita One';
+    width: 80vw;
+    height: 20vh;
+}
+
+  .btn-place input[type="radio"]:focus + label {
+    border: 1px dashed #444;
+}
+
+.btn-place input[type="radio"]:checked + label {
+    border: 0.5vh solid;
+    color: #F09F01;
+    border-color: #F09F01;
+}
+.form-place div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#order_submit{
+    
+    background-color: #F09F01;
+    color: #f8f8f8;
+    width: 55vw;
+    height: 5vh;
+    border-radius: 40px;
+    border: none;
+    font-size: 2vh;
+    font-family: 'Lilita One';
+    margin-top: 5vh;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+/*************** Fidelite ****************/
+.path-to-cart-around{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.path-to-cart div a img {
+    width: 7vw;
+    height: auto;
+}
+.path-to-cart div img {
+    width: 15vw;
+    height: auto;
+}
+.to-cart-div {
+    width: 10%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.to-cart-div2{
+    width: 80%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contour-loyalty {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+}
+
+.not-enough-title{
+    color: #E31B00;
+}
+
+/*************** Valider la commande ****************/
+
+.submit-order-final {
+    background-color: #F09F01;
+    border: none;
+    border-radius: 40px;
+    font-size: 2vh;
+    font-family: 'Lilita One';
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+    height: 5vh;
+    width: 55vw;
+    color: white;
+    margin-top: 5vh;
+}
+.style-alert{
+    font-size: 1.5vh;
+    background-color: rgba(240,159,1,0.3) !important;
+    color: black !important;
+    font-family: 'Signika', sans-serif;
+}
+#register_form div ul {
+    display: none;
+}
+.alert-error-div{
+    margin-bottom: -2vh;
 }

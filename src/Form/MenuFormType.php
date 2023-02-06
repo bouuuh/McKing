@@ -5,8 +5,6 @@ namespace App\Form;
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,24 +21,35 @@ class MenuFormType extends AbstractType
             'expanded' => true,
             'required' => true,
         ])
-        // ->add('snack', RadioType::class, [
-        //     'label' => false,
-        //     'required' => true,
-        // ])
-        // ->add('drink', RadioType::class, [
-        //     'label' => false,
-        //     'required' => true,
-        // ])
-        // ->add('sauce', RadioType::class, [
-        //     'label' => false,
-        //     'required' => true,
-        // ])
-        // ->add('dessert', RadioType::class, [
-        //     'label' => false,
-        //     'required' => true,
-        // ])
+        ->add('snack', EntityType::class, [
+            'class' => Product::class,
+            'choice_label' => 'name',
+            'expanded' => true,
+            'required' => true,
+        ])
+        ->add('drink', EntityType::class, [
+            'class' => Product::class,
+            'choice_label' => 'name',
+            'expanded' => true,
+            'required' => true,
+        ])
+        ->add('sauce', EntityType::class, [
+            'class' => Product::class,
+            'choice_label' => 'name',
+            'expanded' => true,
+            'required' => true,
+        ])
+        ->add('dessert', EntityType::class, [
+            'class' => Product::class,
+            'choice_label' => 'name',
+            'expanded' => true,
+            'required' => true,
+        ])
         ->add('submit', SubmitType::class, [
             'label' => false,
+            'attr' => [
+                'class' => 'order-cart-btn-add'
+            ]
         ])
         ;
     }
@@ -48,7 +57,7 @@ class MenuFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            
+            'data_class' => null,
         ]);
     }
 }

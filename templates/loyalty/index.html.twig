@@ -5,13 +5,304 @@
 {% block content %}
 
 <div class="contour2">
-    <div class="logo loyalty">
-        <img src="" alt="Logo McKing">
+    <div class="logo-loyalty">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
     </div>
-    <div class="arround-loyalty">
-        div.
+{% if app.user %}
+
+    {% if points_session %}
+    <p class="loyalty-point">Vous avez <span>{% if points_session <= 1 %} {{ points_session }} point {% else %} {{ points_session }} points {% endif %}</span></p>
+    {% else %}
+ <p class="loyalty-point">Vous avez <span>{% if app.user.points <= 1 %} {{ app.user.points }} point {% else %} {{ app.user.points }} points {% endif %}</span></p>
+    {% endif %}
+<div class="contour-loyalty">
+
+{% if points_session > 15 %}
+
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p>15 points</p>
     </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 0 %}
+        <div class="path-to-cart">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+    {% else %}
+ <div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p class='not-enough-title'>15 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 3 %}
+        <div class="path-to-cart not-enough">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+{% if points_session > 30 %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p>30 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 1 %}
+       <div class="path-to-cart">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+{% else %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p class='not-enough-title'>30 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 3 %}
+        <div class="path-to-cart not-enough">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+{% if points_session > 60 %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p>60 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 2 %}
+        <div class="path-to-cart">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+{% else %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p class='not-enough-title'>60 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 3 %}
+        <div class="path-to-cart not-enough">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+{% if points_session > 90 %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p>90 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 3 %}
+        <div class="path-to-cart">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+{% else %}
+<div class="list-menu">
+    <div class="list-menu-title">
+        <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
+        <p class='not-enough-title'>90 points</p>
+    </div>
+    <div class="list-menu-content">
+        <div class="path-to-cart-around">
+{% for points in points %}
+    {# {{ dump(points.number_points) }} #}
+    {% if points.number_points == 3 %}
+        <div class="path-to-cart not-enough">
+        <div class="to-cart-div">
+        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        </div>
+        <div class="to-cart-div">
+        <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
+        </div>
+        <div class="to-cart-div2">
+        {{ points.product.name }}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+     </div>
+        </div>
+    </div>
+    {% endif %}
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+
+    <div class="arround-loyalty">
+    <p>Vous allez aimer avoir un compte ;)</p>
+        <div class="loyalty-content">
+            <h1>1€ = 1 point</h1>
+            <p>Jusqu'à 200 points cumulables</p>
+        </div>
+        <p class="loyalty-text">A 140 point, un menu McCking Platine GRATUIT !</p>
+        <div class="menu-img">
+        <img src="{{ asset('assets/images/Menu McKing Platine.png') }}" alt="Menu McKing Platine">
+        </div>
+        <div class="loyalty-register-btn">
+            <a href="{{ path('register') }}">Inscrivez vous !</a>
+        </div>
+    </div>
+
+{% endif %}
+
+</div>
+<script>
+
+var arrowbottom = document.querySelectorAll('.img-list-menu');
+var titlelist = document.querySelectorAll('.list-menu-title');
+var contentlist = document.querySelectorAll('.list-menu-content');
+
+console.log(contentlist)
+
+    for( let i = 0; i < arrowbottom.length ; i++ ){
+    titlelist[i].addEventListener('click', () => {
+        if(arrowbottom[i].getAttribute('src') === '/assets/images/arrowbottom.svg'){
+            contentlist[i].style.display = 'none';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowtop.svg') }}");
+            
+        } else {
+            contentlist[i].style.display = 'flex';
+            arrowbottom[i].setAttribute("src", "{{ asset('/assets/images/arrowbottom.svg') }}");
+        }
+
+    })
+    } 
+
+</script>
 {% endblock %}
 
 {% block navBar %}

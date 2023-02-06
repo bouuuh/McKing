@@ -10,6 +10,24 @@
     <img src="{{ asset('assets/images/Logo.svg') }}">
     </div>
     <div  class="content-register">
+    
+    <div class="alert-error-div">
+    {% if form_errors(form.firstname) %}
+    <div class="alert-info alert style-alert">{{ form_errors(form.firstname) }}</div>
+    {% endif %}
+     {% if form_errors(form.lastname) %}
+    <div class="alert-info alert style-alert">{{ form_errors(form.lastname) }}</div>
+    {% endif %}   
+    {% if form_errors(form.email) %}
+    <div class="alert-info alert style-alert">{{ form_errors(form.email) }}</div>
+    {% endif %}
+    {% if form_errors(form.password) %}
+    <div class="alert-info alert style-alert">{{ form_errors(form.password) }}</div>
+    {% endif %}
+    {% if notification %}
+    <div class="alert-info alert style-alert">{{ notification }}</div>
+    {% endif %}
+    </div>
     {{ form(form) }}
     </div>
     <div class="connect">

@@ -61,8 +61,8 @@
     display: flex;
     flex-direction: column;
     margin-top: -0.2vh;
-    min-height: 90vh;
-    padding-bottom: 10vh;
+    min-height: 78vh;
+    padding-bottom: 25vh;
 }
 .menu-visual{
     height: 20vh;
@@ -127,4 +127,19 @@
 }
 .display-style{
     display: none;
+}
+.details-menu {
+    width: 90vw;
+    padding: 0.5vh 0 1vh 0;
+    background: #F09F01;
+    text-transform: uppercase;
+    color: white;
+    margin: -2vh 0 1vh 0;
+    font-size: 1.4vh;
+    font-family: 'Signika', sans-serif;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 10px 10px;
+}
+.details-menu ul {
+    list-style: none;
 }

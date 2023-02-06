@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block javascript_stripe %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block title %}Mode de livraison - McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour3">
+<a href="{{ path('order') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
+
+<div class="form-place">
+    {{ form_start(form) }}
+
+        {% for child in form.place %}
+        <div class="btn-place">
+        {{ form_widget(child, {
+                    'attr': {
+                    'class': 'radio-button-class',
+                    'autocomplete': 'off'
+            } }) }}
+            <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+        </div>
+
+        {% endfor %}
+
+        <div class="order-submit-final">
+        <button type="submit" class="submit-order-final" id="checkout-button">{{ form.submit.vars.label }}</button>
+        </div>
+        {% do form.submit.setRendered %}
+   {{ form_end(form) }} 
+
+</div>
+
+
+
+</div>
+
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}
+
+{# {% block script %}
+    <script type="text/javascript">
+        var stripe = Stripe("pk_test_51MWxSqJBf835V8Oo4JBvBBiJFMV0xYFkY96aN1bWRwT1zMOKC7hhCeqtGVjjma5RYLE6EW5Uc2kD8a8SMsZ8ITxx00hw3f8vlR");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            fetch("/commande/create-session/{{ reference }}", {
+                method: "POST",
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    if (session.error == 'order') {
+                        window.location.replace("{{ path('order') }}")
+                    } else {
+                        return stripe.redirectToCheckout({ sessionId: session.id });
+                    }
+                })
+                .then(function (result) {
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+{% endblock %} #}

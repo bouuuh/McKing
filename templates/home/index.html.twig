@@ -4,11 +4,68 @@
 
 
 
-{% block header %}
-{% endblock header %}
+   
+
 
 
 {% block content %}
+<div class="headerBar-around">
+    <div class="headerBar">
+    <div class="logo-and-cart">
+    <div></div>
+    <div class="logo-of-header">
+    <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo">
+    </div>
+        <div class="order-cart">
+            <a href="{{ path('cart') }}" class="order-cart-btn">
+                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Panier">
+            </a>
+        </div>
+    </div>
+        
+
+        {% if app.user %}
+
+        <p>Bonjour {{ app.user.firstname }} :)</p>
+        <div class="point-text">
+        {% if points_session %}
+        <p>Vous disposez de <span>{% if points_session <= 1 %} {{ points_session }} point {% else %} {{ points_session }} points {% endif %}</span></p>
+        {% else %}
+        <p>Vous disposez de <span>{% if app.user.points <= 1 %} {{ app.user.points }} point {% else %} {{ app.user.points }} points {% endif %}</span></p>
+        {% endif %}
+        
+            
+            <a href="{{ path('loyalty') }}" class='btnHeader'>Utilisez-les !</a>
+        </div>
+        
+        
+        {% else %}
+
+        <p>La fidélité a du bon !</p>
+
+            <a href="{{ path('login') }}" class='btnHeader'>Se connecter</a>
+            <a href="{{ path('register') }}" class='btnHeader'>S'inscrire</a>
+
+        {% endif %}
+
+    </div>
+    </div> 
+
+
+
+
+
+<div class="contour2">
+
+    {% for illustration in illustration %}
+    
+    <div class="illustration-home">
+        <a href="{{ path('category') }}"><img src="/uploads/{{ illustration.visual }}" alt="{{ illustration.name }}" >
+    </div>
+    
+    {% endfor %}
+</div>
+
 {% endblock content %}
 
 {% block navBar %}

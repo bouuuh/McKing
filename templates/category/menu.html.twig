@@ -12,11 +12,17 @@
     <h2 class="title-menu">Menu {{ menus.name }}</h2>
         <img src="/uploads/{{ menus.visual }}" alt="{{ menus.name }}" class="menu-visual">
 
-        {% set formHtml %}
-        {{ form_start(form) }}
-            {{ form_label(form.burger, 'Burger') }}
-        {{ form_end(form) }}
-        {% endset %}
+        
+
+
+
+
+
+{{ form_start(form) }}
+
+
+
+
 
 {###################### BURGERS ######################}
     <div class="list-menu">
@@ -27,19 +33,45 @@
         <div class="list-menu-content">
         {% for products in products %}
         {% if menus.name != "McKing Kids" and (products.category == 'Burgers' or (products.category == 'Snacks' and products.size != 0)) %}
-        <div>
-            <input type="radio" name="burgers" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+
+        {% for child in form.burger %}
+            {% if child.vars.label == products.name  %}           
+                <div>
+                {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class',
+        } }) }}
+            {% if menus.name == 'McKing' %}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }} ({{ ((products.price + 330)/ 100)|number_format(2, ',', '.') }}€)</label>
+               
+            {% elseif menus.name == 'Maxi McKing' %}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }} ({{ ((products.price + 380)/ 100)|number_format(2, ',', '.') }}€)</label>
+            
+            {% elseif menus.name == 'McKing Platine' %}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }} ({{ ((products.price + 550)/ 100)|number_format(2, ',', '.') }}€)</label>
+            {% endif %} 
+                </div>
+                {% endif %}
+                {% endfor %}
         {% elseif menus.name == "McKing Kids" and products.kids == 1 and (products.category == 'Burgers' or products.category == 'Snacks') %}
-        <div>
-            <input type="radio" name="burgers" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.burger %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
         {% endif %}
         {% endfor %}
         </div>
     </div>
+{% do form.burger.setRendered %}
 
 
     {###################### SNACK ######################}
@@ -52,10 +84,20 @@
         <div class="list-menu-content">
         {% for products in products %}
         {% if products.category == "Snacks" and products.size == 1 %}
-        <div>
-            <input type="radio" name="snack" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        
+        {% for child in form.snack %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
 
         {% endif %}
         {% endfor %}    
@@ -63,7 +105,7 @@
     </div>
     {% endif %}
 
-
+{% do form.snack.setRendered %}
     {###################### BOISSONS ######################}
     
     <div class="list-menu">
@@ -74,25 +116,53 @@
         <div class="list-menu-content">
         {% for products in products %}
         {% if menus.name == 'McKing' and (products.category == 'Boissons' and (products.size == 1 or products.size == 3)) %}
-        <div>
-            <input type="radio" name="boissons" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.drink %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+
         {% elseif (menus.name == 'Maxi McKing' or menus.name == 'McKing Platine') and (products.category == 'Boissons' and (products.size == 2 or products.size == 3)) %}
-        <div>
-            <input type="radio" name="boissons" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.drink %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
         {% elseif menus.name == 'McKing Kids' and (products.category == 'Boissons' and (products.size == 0 or products.size == 3)) %}
-        <div>
-            <input type="radio" name="boissons" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.drink %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
         {% endif %}
         {% endfor %}
         </div>
     </div>
-
+{% do form.drink.setRendered %}
     {###################### SAUCES ######################}
     
     <div class="list-menu">
@@ -103,15 +173,25 @@
         <div class="list-menu-content">
         {% for products in products %}
         {% if products.category == 'Sauces' %}
-        <div>
-            <input type="radio" name="sauces" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.sauce %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+
         {% endif %}
         {% endfor %}
         </div>
     </div>
-
+{% do form.sauce.setRendered %}
     
     {###################### DESSERT ######################}
     {% if menus.name == 'McKing Kids' %}
@@ -123,10 +203,18 @@
         <div class="list-menu-content">
         {% for products in products %}
         {% if products.category == "Desserts" and products.kids == 1 %}
-        <div>
-            <input type="radio" name="dessert" value="{{ products.name }}">
-            <label for="{{ products.name }}">{{ products.name }}</label>
-        </div>
+        
+        {% for child in form.dessert %}
+            {% if child.vars.label == products.name  %}
+                <div>
+                    {{ form_widget(child, {
+                'attr': {
+                'class': 'radio-button-class'
+        } }) }}
+                    <label for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
 
         {% endif %}
         {% endfor %}    
@@ -134,13 +222,24 @@
     </div>
     {% endif %}
 
-
-    </div>
-    <div class="order-cart-add">
-            <a href="{{ path('add_menu_to_cart', { 'slug' : menus.slug }) }}" class="order-cart-btn-add">
+{% do form.dessert.setRendered %}
+<div class="order-cart-add">
+    
+    <button type='submit' class="order-cart-btn-add">
+ 
                 <img src="{{ asset('assets/images/Cart.svg') }}" alt="Ajouter au panier">
-            </a>
+            </button>
         </div>
+        {% do form.submit.setRendered %}
+
+        
+           
+        
+{{ form_end(form) }}
+    </div>
+    
+    
+    
 
 </div>
 

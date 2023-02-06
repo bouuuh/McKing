@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma Commande - McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+<div class="contour2">
+<a href="{{ path('cart') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
+<h2 class="recap-title">Recapitulatif</h2>
+
+{% if cart|length > 0 or menu|length > 0  or points|length > 0 %}
+        
+        {% set total = null %}
+{% for menu in menu %}
+  
+   
+{# Pour les menus #}
+<div class="container-cart">
+     <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ menu.menu.visual }}" alt="{{ menu.menu.name }}">
+            </div>
+            <div class="cart-info">
+                {{ menu.menu.name }}
+                <br>
+                {% if menu.menu.name == 'McKing' or menu.menu.name == 'Maxi McKing' %}
+                 {{ ((menu.burger.price + menu.drink.price + menu.sauce.price) / 100)|number_format(2, ',', '.') }}€
+
+                 {% set total = total + (menu.burger.price + menu.drink.price + menu.sauce.price) %} 
+                 {% elseif menu.menu.name == 'McKing Platine'  %}
+                     {{ ((menu.burger.price + menu.drink.price + 200) / 100)|number_format(2, ',', '.') }}€
+
+                 {% set total = total + (menu.burger.price + menu.drink.price + 200) %}     
+                {% elseif menu.menu.name == 'McKing Kids' %}
+                     4,30€
+                 {% set total = total + 430 %}
+                {% endif %}
+            </div>
+            <div class="cart-info">
+                1
+            </div>
+           
+        </div>
+        {# <div class="details-menu">
+        <ul>
+                 {% if menu.menu.name == 'McKing' %}
+                 <li>Moyenne Frite</li>
+                 <li>{{ menu.burger.name }}</li>
+                 <li>{{ menu.drink.name }}</li>
+                 <li>{{ menu.sauce.name }}</li>
+                 {% elseif menu.menu.name == 'Maxi McKing' %}
+                 <li>Grande Frite</li>
+                <li>{{ menu.burger.name }}</li>
+                 <li>{{ menu.drink.name }}</li>
+                 <li>{{ menu.sauce.name }}</li>
+                 {% elseif menu.menu.name == 'McKing Platine' %}
+                 <li>Grande Frite</li>
+                <li>{{ menu.burger.name }}</li>
+                <li>{{ menu.snack.name }}</li>
+                 <li>{{ menu.drink.name }}</li>
+                 <li>{{ menu.sauce.name }}</li>
+                {% elseif menu.menu.name == 'McKing Kids' %}
+                <li>Petite Frite</li>
+                <li>{{ menu.burger.name }}</li>
+                 <li>{{ menu.sauce.name }}</li>
+                 <li>{{ menu.dessert.name }}</li>
+                {% endif %}
+        
+            
+        </ul>
+        </div>  #}
+        
+ 
+ {% endfor %} 
+
+ {% for product in cart %}
+{# Pour les produits #}
+
+        <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ product.product.visual }}" alt="{{ product.product.name }}">
+            </div>
+            <div class="cart-info">
+                {{ product.product.name }}
+                <br>
+                {{ (product.product.price * product.quantity / 100)|number_format(2, ',', '.') }} €
+            </div>
+            <div class="cart-info">
+                {{ product.quantity }}
+            </div>
+        </div>
+        {% set total = total + (product.product.price * product.quantity) %} 
+
+
+
+        
+         {% endfor %}  
+
+
+        {% for points in points %}
+{# Pour les produits #}
+
+        <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ points.visual }}" alt="{{ points.name }}">
+            </div>
+            <div class="cart-info">
+                {{ points.name }}
+                <br>
+                Offert
+            </div>
+            <div class="cart-info">
+                1
+            </div>
+        </div>
+        {% set total = total + (points.price ) %}  
+
+
+
+        
+         {% endfor %}   
+
+
+
+ <div class="cart-total2">
+            <p>Total</p><span>{{ (total / 100)|number_format(2, ',', '.') }} €</span>
+        </div>
+
+   
+<div class="button-order-final">
+ 
+        <a href="{{ path('order_final') }}" class="order-submit">
+        <div>Valider ma commande</div>
+        </a>
+</div> 
+</div>
+
+
+</div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}

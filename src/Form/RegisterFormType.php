@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class RegisterFormType extends AbstractType
 {
@@ -19,18 +20,33 @@ class RegisterFormType extends AbstractType
         $builder
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
+                'constraints' => new Length(
+                    min: 2,
+                    max: 30,
+                    minMessage: "Il n'y a pas assez de caractères pour le champ 'Prénom'.",
+                    maxMessage: "Il y a trop de caractères pour le champ 'Prénom'.",),
                 'attr' => [
                     'class' => 'register-form'
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
+                'constraints' => new Length(
+                    min: 2,
+                    max: 30,
+                    minMessage: "Il n'y a pas assez de caractères pour le champ 'Nom'.",
+                    maxMessage: "Il y a trop de caractères pour le champ 'Nom'."),
                 'attr' => [
                     'class' => 'register-form'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'constraints' => new Length(
+                    min: 2,
+                    max: 60,
+                    minMessage: "Il n'y a pas assez de caractères pour le champ 'Email'.",
+                    maxMessage: "Il y a trop de caractères pour le champ 'Email'."),
                 'attr' => [
                     'class' => 'register-form'
                 ]

@@ -15,6 +15,10 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+        {% block javascript_stripe %}
+            
+        {% endblock %}
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
@@ -24,41 +28,6 @@
 
 
 {# header #}
-{% if block('header') is defined %}       
-    <div class="headerBar">
-    <div class="logo-and-cart">
-    <div></div>
-    <div class="logo-of-header">
-    <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo">
-    </div>
-        <div class="order-cart">
-            <a href="{{ path('cart') }}" class="order-cart-btn">
-                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Panier">
-            </a>
-        </div>
-    </div>
-        
-
-        {% if app.user %}
-
-        <p>Bonjour {{ app.user.firstname }} :)</p>
-        <div class="point-text">
-            <p>Vous disposez de <span>{% if app.user.points <= 1 %} {{ app.user.points }} point {% else %} {{ app.user.points }} points {% endif %}</span></p>
-            <a href="" class='btnHeader'>Utilisez-les !</a>
-        </div>
-        
-        
-        {% else %}
-
-        <p>La fidélité a du bon !</p>
-
-            <a href="{{ path('login') }}" class='btnHeader'>Se connecter</a>
-            <a href="{{ path('register') }}" class='btnHeader'>S'inscrire</a>
-
-        {% endif %}
-
-    </div>
-{% endif %}
 
 {% if block('headerProduct') is defined %}
 
@@ -110,7 +79,7 @@
         </div>
 
         <div class="case case5">
-            <a href="" class="Compte"><img class="icon_thenavBar" src="{{ asset('assets/images/Compte.svg') }}"></a>
+            <a href="{{ path('account') }}" class="Compte"><img class="icon_thenavBar" src="{{ asset('assets/images/Compte.svg') }}"></a>
         </div>
 
     </div>
@@ -118,4 +87,9 @@
 
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
+
+    {% block script %}
+        
+    {% endblock %}
+
 </html>

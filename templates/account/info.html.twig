@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations - McKing{% endblock %}
+
+{% block content %}
+
+<div class="contour2">
+    <div class="logo-loyalty">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
+    </div>
+
+    <a href="{{ path('account') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
+
+    <h1 class="info-title">Mes informations</h1>
+
+    <div class="contour-info-account">
+
+    <p class="p-info">Nom :</p>
+    <div class="info-account-case">
+        <p>{{ app.user.firstname }}</p>
+    </div>
+
+    <p class="p-info">Prénom :</p>
+    <div class="info-account-case">
+        <p>{{ app.user.lastname }}</p>
+    </div>
+
+    <p class="p-info">Email :</p>
+    <div class="info-account-case">
+        <p>{{ app.user.email }}</p>
+    </div>
+    <div class="change-password">
+        <a href="{{ path('account_password') }}">Modifier mon mot de passe</a>
+    </div>
+
+    </div>
+</div>
+    
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}

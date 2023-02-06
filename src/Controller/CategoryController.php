@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Cart;
 use App\Entity\Category;
 use App\Entity\Menu;
 use App\Entity\Product;
@@ -10,15 +11,18 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
 
     private $entityManager;
+    private $session;
 
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager, SessionInterface $session){
         $this->entityManager = $entityManager;
+        $this->session = $session;
     }
 
     #[Route('/commander', name: 'category')]
@@ -85,7 +89,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/menus/{slug}', name: 'menu')]
-    public function show_menu($slug, Request $request): Response
+    public function show_menu($slug, Request $request, Cart $cart, SessionInterface $session): Response
     {
       
         
@@ -96,21 +100,44 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('category');
         }
 
-
-        $form = $this->createForm(MenuFormType::class, [
-            'burger' => $this->entityManager->getRepository(Product::class)->findAll()
-        ]);
-
+        $form = $this->createForm(MenuFormType::class);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $burger = $form->get('burger')->getData();
             $snack = $form->get('snack')->getData();
             $drink = $form->get('drink')->getData();
             $sauce = $form->get('sauce')->getData();
             $dessert = $form->get('dessert')->getData();
+            $menuId = uniqId();
+
+           
+            $item = [
+                    'menu' => $this->entityManager->getRepository(Menu::class)->findOneBySlug($slug),
+                    'menuId' => $menuId,
+                    'burger' => $burger,
+                    'snack' => $snack,
+                    'drink' => $drink,
+                    'sauce' => $sauce,
+                    'dessert' => $dessert,
+                
+            ];
+            
+            $list_item = $this->session->get('list_item', []);
+
+            if (!empty($list_item)) {
+                $list_item[$menuId] = $item;
+            } else {
+                $list_item[$menuId] = $item;
+            }
+            $this->session->set('list_item', $list_item);
+            
+            
+            return $this->redirectToRoute('cart');
         }
+        
 
    
         return $this->render('category/menu.html.twig', [

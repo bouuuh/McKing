@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Classes;
+use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -15,14 +16,14 @@ class Cart
         $this->entityManager = $entityManager;
     }
 
-    public function add($id)
+    public function add($slug)
     {
         $cart = $this->session->get('cart', []);
 
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
+        if (!empty($cart[$slug])) {
+            $cart[$slug]++;
         } else {
-            $cart[$id] = 1;
+            $cart[$slug] = 1;
         }
 
         $this->session->set('cart', $cart);
@@ -59,4 +60,32 @@ class Cart
 
             return $this->session->set('cart', $cart);
         }
+
+public function getFull()
+        {
+            
+            $cartCompleteProduct = [];
+
+
+            if ($this->get()){
+
+                foreach ($this->get() as $id => $quantity) {
+
+                    $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
+
+                    if (!$product_object) {
+                        $this->delete($id);
+                        continue;
+                    }
+
+                    $cartCompleteProduct[] = [
+                        'product' => $product_object,
+                        'quantity' => $quantity
+                    ];
+                }
+            }
+
+            return $cartCompleteProduct;
+        }
 }
+

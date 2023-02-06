@@ -4,7 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\IllustrationHome;
+use App\Entity\Loyalty;
 use App\Entity\Menu;
+use App\Entity\Order;
+use App\Entity\Postal;
 use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -51,5 +54,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Menus', 'fas fa-bag-shopping', Menu::class);
         yield MenuItem::linkToCrud('Produits', 'fas fa-tag', Product::class);
+        yield MenuItem::linkToCrud('Order', 'fa-solid fa-cart-shopping', Order::class);
+        yield MenuItem::linkToCrud('Fidélité', 'fa-solid fa-coins', Loyalty::class);
+        yield MenuItem::linkToCrud('Codes Postaux', 'fa-solid fa-envelopes-bulk', Postal::class);
     }
 }

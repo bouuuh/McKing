@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +46,23 @@ class Product
 
     #[ORM\Column(nullable: true)]
     private ?bool $kids = null;
+
+    #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: OrderDetails::class)]
+    private Collection $orderDetails;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Loyalty::class)]
+    private Collection $loyalties;
+
+    public function __construct()
+    {
+        $this->orderDetails = new ArrayCollection();
+        $this->loyalties = new ArrayCollection();
+    }
+
+
+    public function __toString(){
+        return $this->name; 
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +185,66 @@ class Product
     public function setKids(?bool $kids): self
     {
         $this->kids = $kids;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderDetails>
+     */
+    public function getOrderDetails(): Collection
+    {
+        return $this->orderDetails;
+    }
+
+    public function addOrderDetail(OrderDetails $orderDetail): self
+    {
+        if (!$this->orderDetails->contains($orderDetail)) {
+            $this->orderDetails->add($orderDetail);
+            $orderDetail->setIdProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderDetail(OrderDetails $orderDetail): self
+    {
+        if ($this->orderDetails->removeElement($orderDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($orderDetail->getIdProduct() === $this) {
+                $orderDetail->setIdProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Loyalty>
+     */
+    public function getLoyalties(): Collection
+    {
+        return $this->loyalties;
+    }
+
+    public function addLoyalty(Loyalty $loyalty): self
+    {
+        if (!$this->loyalties->contains($loyalty)) {
+            $this->loyalties->add($loyalty);
+            $loyalty->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoyalty(Loyalty $loyalty): self
+    {
+        if ($this->loyalties->removeElement($loyalty)) {
+            // set the owning side to null (unless already changed)
+            if ($loyalty->getProduct() === $this) {
+                $loyalty->setProduct(null);
+            }
+        }
 
         return $this;
     }

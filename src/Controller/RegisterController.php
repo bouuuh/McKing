@@ -25,7 +25,7 @@ class RegisterController extends AbstractController
     #[Route('/inscription', name: 'register')]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
-        
+        $notification = null;
         $user = new User();
         $form = $this->createform(RegisterFormType::class, $user);
 
@@ -35,22 +35,27 @@ class RegisterController extends AbstractController
 
             $user = $form->getData();
             
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            
-            $user->setPassword($password);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-            
+            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+            if (!$search_email) {
+                $password = $encoder->encodePassword($user, $user->getPassword());
+
+                $user->setPassword($password);
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+
 
                 return $this->redirectToRoute('login');
-            
+            } else {
+                $notification = 'Le mail existe déjà !';
+            }
   
 
         }
 
 
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'notification' => $notification
         ]);
     }
 }

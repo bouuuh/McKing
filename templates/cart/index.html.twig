@@ -11,45 +11,81 @@
 
     <div class="container-cart">
 
-    {% if cart|length > 0 %}
+    {% if cart|length > 0 or menus|length > 0 or points|length > 0 %}
         
         {% set total = null %}
           
         
-        
-         {% for product in cart %}
-
-         {% if product.menu != null %}
+ 
+     
+    {% for menus in menus %}
+  
+   
 {# Pour les menus #}
-
-        <div class="cart">
+     <div class="cart">
             <div class="cart-info">
-                <img src="/uploads/{{ product.menu.visual }}" alt="{{ product.menu.name }}">
+                <img src="/uploads/{{ menus.menu.visual }}" alt="{{ menus.menu.name }}">
             </div>
             <div class="cart-info">
-                {{ product.menu.name }}
+                {{ menus.menu.name }}
                 <br>
-                {{ ( product.quantity / 100)|number_format(2, ',', '.') }} €
+                {% if menus.menu.name == 'McKing' or menus.menu.name == 'Maxi McKing' %}
+                 {{ ((menus.burger.price + menus.drink.price + menus.sauce.price) / 100)|number_format(2, ',', '.') }}€
+
+                 {% set total = total + (menus.burger.price + menus.drink.price + menus.sauce.price) %} 
+                 {% elseif menus.menu.name == 'McKing Platine'  %}
+                     {{ ((menus.burger.price + menus.drink.price + menus.sauce.price + 200) / 100)|number_format(2, ',', '.') }}€
+
+                 {% set total = total + (menus.burger.price + menus.drink.price + menus.sauce.price + 200) %}     
+                {% elseif menus.menu.name == 'McKing Kids' %}
+                     4,30€
+                 {% set total = total + 430 %}
+                {% endif %}
             </div>
             <div class="cart-info">
-                {{ product.quantity }}
+                1
             </div>
             <div class="cart-delete">
-                <a href="{{ path('delete_to_cart', { 'slug' : product.menu.slug }) }}">
+                  <a href="{{ path('delete_to_cart_menu', { 'id' : menus.menuId }) }}">
                     <img src="{{ asset('assets/images/Bin.svg') }}" alt="Supprimer produit">
-                </a> 
+                </a>   
             </div>
         </div>
         <div class="details-menu">
-        - frites <br>
-        - burger <br>
-        - boisson <br>
-        </div>
+        <ul>
+                 {% if menus.menu.name == 'McKing' %}
+                 <li>Moyenne Frite</li>
+                 <li>{{ menus.burger.name }}</li>
+                 <li>{{ menus.drink.name }}</li>
+                 <li>{{ menus.sauce.name }}</li>
+                 {% elseif menus.menu.name == 'Maxi McKing' %}
+                 <li>Grande Frite</li>
+                <li>{{ menus.burger.name }}</li>
+                 <li>{{ menus.drink.name }}</li>
+                 <li>{{ menus.sauce.name }}</li>
+                 {% elseif menus.menu.name == 'McKing Platine' %}
+                 <li>Grande Frite</li>
+                <li>{{ menus.burger.name }}</li>
+                <li>{{ menus.snack.name }}</li>
+                 <li>{{ menus.drink.name }}</li>
+                 <li>{{ menus.sauce.name }}</li>
+                {% elseif menus.menu.name == 'McKing Kids' %}
+                <li>Petite Frite</li>
+                <li>{{ menus.burger.name }}</li>
+                 <li>{{ menus.sauce.name }}</li>
+                 <li>{{ menus.dessert.name }}</li>
+                {% endif %}
+        
+            
+        </ul>
+        </div> 
+        
+ 
+ {% endfor %} 
 
 
-
-         
-         {% elseif product.product != null %}
+         {% for product in cart %}
+         {% if product.product != null %}
 {# Pour les produits #}
 
         <div class="cart">
@@ -84,11 +120,37 @@
         
          {% endfor %} 
 
+
+{% for points in points %}
+{# Pour les points #}
+
+        <div class="cart">
+            <div class="cart-info">
+                <img src="/uploads/{{ points.visual }}" alt="{{ points.name }}">
+            </div>
+            <div class="cart-info">
+                {{ points.name }}
+                <br>
+            </div>
+            <div class="cart-info">
+                Fidélité
+            </div>
+            <div class="cart-delete">
+                 <a href="{{ path('delete_to_cart_points', { 'slug' : points.slug }) }}"> 
+                    <img src="{{ asset('assets/images/Bin.svg') }}" alt="Supprimer produit">
+                </a> 
+            </div>
+        </div>  
+    
+        
+         {% endfor %} 
+
+
         <div class="cart-total">
             <p>Total</p><span>{{ (total / 100)|number_format(2, ',', '.') }} €</span>
         </div>
         <div class="cart-paid">
-            <a href="">Payer</a>
+            <a href="{{ path('order') }}">Payer</a>
         </div>
     {% else %}
     <p class="cart-empty">Votre panier est vide, ajouter des produits pour qu'il se remplisse !</p>
