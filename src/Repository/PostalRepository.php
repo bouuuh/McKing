@@ -38,6 +38,17 @@ class PostalRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByCityOrCode($value): array
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.city LIKE :val')
+           ->orWhere('c.code LIKE :val')
+           ->setParameter('val', $value.'%')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    /**
 //     * @return Postal[] Returns an array of Postal objects

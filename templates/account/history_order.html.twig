@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon historique de commande - McKing{% endblock %}
+
+{% block content %}
+
+<div class="contour2">
+    <div class="logo-loyalty">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
+    </div>
+    <a href="{{ path('account_history') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
+    <h1 class="info-title">Détails de la commande</h1>
+                {{ dump(order) }}
+                <div class="arround-order-history-list">
+                    <div class="order-history-list">
+                            <h1>Lieu</h1>
+                            {# <p>{{ reference }}</p> #}
+                            <hr>
+                            <p>
+                                
+                            </p>
+                    </div>
+                </div>    
+{% endblock %}
+
+{% block navBar %}
+
+{% endblock %}

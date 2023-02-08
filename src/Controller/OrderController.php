@@ -7,6 +7,7 @@ use App\Entity\Loyalty;
 use App\Entity\Menu;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
+use App\Entity\Postal;
 use App\Entity\Product;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,27 +59,36 @@ class OrderController extends AbstractController
         if (!($this->getUser())) {
             return $this->redirectToRoute('login');
         }
+        $city = $this->session->get('city_session', []);
+        
+
+        if ($city == null) {
+            return $this->redirectToRoute('map');
+        }
 
         $form = $this->createForm(OrderType::class);
         $form->handleRequest($request);
 
-        
+        $date = new \DateTime;
+        $reference = $date->format('dmY').'-'.uniqid();
         if ($form->isSubmitted() && $form->isValid()) {
-            $date = new \DateTime;
+            
             $place = $form->get('place')->getData();
-
+            
             $order = new Order();
-            $reference = $date->format('dmY').'-'.uniqid();
             $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setDate($date);
             $order->setPlace($place);
             $order->setState(0);
+            $city_full = $this->entityManager->getRepository(Postal::class)->findOneById($city->getId());
+            $order->setCity($city_full);
 
             $this->entityManager->persist($order);
 
+            $total = 0;
             
-            
+            if ($this->session->get('cart', []) != null) {
             foreach ($this->session->get('cart', []) as $slug => $quantity) {
 
                 $orderDetails = new OrderDetails();
@@ -94,17 +104,19 @@ class OrderController extends AbstractController
                 $points = ($points + $test);
                 $user->setPoints($points);
                 $this->entityManager->persist($orderDetails);
+                $total = $total + ($product_full->getPrice() * $quantity);
                 
             }
             if(!empty($this->session->get('cart', []))){
                 $user->setPoints(number_format($points, 0));
                 $this->entityManager->persist($user);
             }
+        }
             $menus = $this->session->get('list_item', []);
             
-            foreach ($menus as $value) {
-
-               
+            if ($menus != null) {
+            
+            foreach ($menus as $value) {              
                   if ($value['menu']->getId() != '4') {
 
                     foreach ($value as $key => $values) {
@@ -125,6 +137,7 @@ class OrderController extends AbstractController
                         $points = ($points + $test);
                         $user->setPoints($points);
                         $this->entityManager->persist($orderDetails);
+                        $total = $total + ($product_full->getPrice());
                         }
                         if($key == 'snack' && $values != null){
                             $orderDetails = new OrderDetails();
@@ -142,6 +155,7 @@ class OrderController extends AbstractController
                             $test = 2;
                             $points = ($points + $test);
                             $user->setPoints($points);
+                            $total = $total + ($product_full->getPrice());
                             $this->entityManager->persist($orderDetails);
                         }
 
@@ -170,6 +184,7 @@ class OrderController extends AbstractController
                             $test = 1.075;
                             $points = ($points + $test);
                             $user->setPoints($points);
+                            $total = $total + ($product_full->getPrice());
                             $this->entityManager->persist($orderDetails);
                             }
                     }
@@ -180,9 +195,10 @@ class OrderController extends AbstractController
                 }
 
              }
-                
+             }   
              $points = $this->session->get('points', []);
 
+             if($this->session->get('point', []) != null){
              foreach ($this->session->get('points', []) as $slug => $quantity) {
                 
                 $orderDetails = new OrderDetails();
@@ -223,17 +239,19 @@ class OrderController extends AbstractController
                 $user->setPoints(round($points));
                 $this->entityManager->persist($user);
             }
-
+        }
+            $order->setTotal($total);
+        $this->entityManager->flush();
+        return $this->redirectToRoute('stripe_create_session', array('reference' => $reference));
         }
 
-        $this->entityManager->flush();
 
-
+        
         
 
         return $this->render('order/add.html.twig', [
             'form' => $form->createView(),
-            //'reference' => $order->getReference(),
+            'reference' => $reference,
             'menu' => $this->session->get('list_item', []),
             
         ]);

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostalRepository::class)]
@@ -19,11 +21,20 @@ class Postal
     #[ORM\Column]
     private ?int $code = null;
 
+    #[ORM\OneToMany(mappedBy: 'city', targetEntity: Order::class)]
+    private Collection $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    
     public function getCity(): ?string
     {
         return $this->city;
@@ -47,4 +58,13 @@ class Postal
 
         return $this;
     }
+    
+    public function getText(): String
+    {
+        return $this->city.' - '.$this->code;
+    }
+
+  
+
+
 }

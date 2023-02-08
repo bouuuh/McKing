@@ -143,3 +143,110 @@
 .details-menu ul {
     list-style: none;
 }
+/* Page Map */
+.container-city{
+    background-color: #e4e4e4;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    align-items: center;
+    margin-top: -0.2vh;
+    min-height: 78vh;
+    padding-bottom: 25vh;
+}
+.thecity{
+    width: 80vw;
+    height: 20vh;
+    border-radius: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vh;
+    font-family: 'Signika';
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10vh;
+    background-color: #fbfbfb;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.thecity p {
+    text-align: center;
+}
+.select2-container{
+    width: 70vw !important;
+
+    font-size: 1.6vh;
+}
+.change-city p {
+    font-size: 3vh;
+    font-family: 'Signika';
+    font-weight: 400;
+    padding-bottom: 1vh;
+    
+}
+.change-city{
+    width: 95vw;
+    height: 25vh;
+    background-color: #E31B00;
+    color: #F7F7F7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.change-city2{
+    width: 95vw;
+    height: 25vh;
+    background-color: #E31B00;
+    color: #F7F7F7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+    font-size: 2.5vh;
+    font-family: 'Signika', sans-serif;
+}
+
+.select2-selection{
+    height: 4vh !important;
+    border-radius: 3vh !important; 
+    margin-bottom: 2vh !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.95vh;
+    font-family: 'Signika';
+    font-size: 1.8vh;
+    line-height: 100% !important;
+}
+#postal_submit{
+    border-radius: 50px;
+    width: 40vw;
+    height: 4vh;
+    border: none;
+    background-color: #F7F7F7;
+    color: black;
+    font-family: 'Lilita One';
+    font-size: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+.select2-selection__arrow{
+    display: none;
+}
+.required{
+    display: none;
+}

@@ -30,9 +30,9 @@
 
                  {% set total = total + (menu.burger.price + menu.drink.price + menu.sauce.price) %} 
                  {% elseif menu.menu.name == 'McKing Platine'  %}
-                     {{ ((menu.burger.price + menu.drink.price + 200) / 100)|number_format(2, ',', '.') }}€
+                     {{ ((menu.burger.price + menu.drink.price + menu.sauce.price + 200) / 100)|number_format(2, ',', '.') }}€
 
-                 {% set total = total + (menu.burger.price + menu.drink.price + 200) %}     
+                 {% set total = total + (menu.burger.price + menu.drink.price + menu.sauce.price + 200) %}     
                 {% elseif menu.menu.name == 'McKing Kids' %}
                      4,30€
                  {% set total = total + 430 %}
@@ -100,7 +100,7 @@
 
 
         {% for points in points %}
-{# Pour les produits #}
+{# Pour les produits fidelité #}
 
         <div class="cart">
             <div class="cart-info">
@@ -115,7 +115,7 @@
                 1
             </div>
         </div>
-        {% set total = total + (points.price ) %}  
+        {% set total = total %}  
 
 
 

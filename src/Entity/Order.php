@@ -38,6 +38,18 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $total = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Postal $city = null;
+
+  
+
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -138,4 +150,43 @@ class Order
 
         return $this;
     }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): self
+    {
+        $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(?float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getCity(): ?Postal
+    {
+        return $this->city;
+    }
+
+    public function setCity(?Postal $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+
+   
 }

@@ -789,7 +789,7 @@ span {
     border-radius: 40px;
     border: none;
     font-size: 2vh;
-    font-family: 'Lilita One';
+    font-family: 'Lilita One', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -802,7 +802,7 @@ span {
     bottom: 10vh;
 }
 .recap-title{
-    font-family: 'Lilita One';
+    font-family: 'Lilita One', cursive;
     font-size: 3vh;
     text-transform: uppercase;
     margin: 1vh 0 2vh 2vh;
@@ -829,7 +829,7 @@ span {
     margin-top: 4vh;
     border-radius: 20px;
     text-transform: uppercase;
-    font-family: 'Lilita One';
+    font-family: 'Lilita One', cursive;
     width: 80vw;
     height: 20vh;
 }
@@ -848,7 +848,7 @@ span {
     justify-content: center;
     align-items: center;
 }
-#order_submit{
+#checkout-button{
     
     background-color: #F09F01;
     color: #f8f8f8;
@@ -857,7 +857,7 @@ span {
     border-radius: 40px;
     border: none;
     font-size: 2vh;
-    font-family: 'Lilita One';
+    font-family: 'Lilita One', cursive;
     margin-top: 5vh;
     filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
 }
@@ -907,7 +907,7 @@ span {
     border: none;
     border-radius: 40px;
     font-size: 2vh;
-    font-family: 'Lilita One';
+    font-family: 'Lilita One', cursive;
     filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
     height: 5vh;
     width: 55vw;
@@ -926,3 +926,71 @@ span {
 .alert-error-div{
     margin-bottom: -2vh;
 }
+
+/*************** Confirmation de commande ****************/
+
+.confirm-content h1 {
+    font-family: 'Lilita One', cursive;
+    font-size: 3.5vh;
+    margin-left: 5vw;
+}
+
+.confirm-content p {
+    font-family: 'Signika', sans-serif;
+    font-size: 2vh;
+    margin-left: 5vw;
+}
+
+.return-home {
+    background-color: #F09F01;
+    font-size: 2vh;
+    font-family: 'Lilita One', cursive;
+    width: 55vw;
+    height: 5vh;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.return-home a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+
+}
+
+/*************** Historique des commandes ****************/
+
+.arround-order-history-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+}
+
+.order-history-list {
+    background-color: #F7F7F7;
+    width: 90vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
+}
+
+.order-history-list a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.order-history-list h1 {
+    font-family: 'Lilita One', cursive;
+    font-size: 2vh;
+}
+
+.order-history-list p {
+    font-family: 'Signika', sans-serif;
+    font-size: 2vh;
+}
+

@@ -14,54 +14,80 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StripeController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+
+    }
     #[Route('/commande/create-session/{reference}', name: 'stripe_create_session')]
-    public function index(EntityManagerInterface $entityManager ,$reference): Response
+    public function index($reference): Response
     {
 
-        $YOUR_DOMAIN = 'http://127.0.0.1:8000';
+        
+       
+        $YOUR_DOMAIN = 'http://5.196.194.205:8000';
+        $product_for_stripe = [];
+        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
 
-        $order = $entityManager->getRepository(Order::class)->findOneByReference($reference);
+        
+        // dd($order->getOrderDetails()->getValues());
 
         if (!$order) {
             new JsonResponse(['error' => 'order']);
         }
 
-        foreach ($order->getOrderDetails()->getValues() as $slug => $quantity) {
+            
+            foreach ($order->getOrderDetails()->getValues() as $product) {
 
-            $product_full = $entityManager->getRepository(Product::class)->findOneBySlug($slug);
+                $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
 
-            $products_for_stripe[] = [
-                'price_data' => [
-                    'currency' => 'eur',
-                    'unit_amount' => $product_full->getPrice(),
-                    'product_data' => [
-                        'name' => $product_full->getIdProduct(),
-                        'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                
+
+                $products_for_stripe[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'unit_amount' => $product->getPrice(),
+                        'product_data' => [
+                            'name' => $product->getIdProduct(),
+                            'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                        ],
                     ],
-                ],
-                'quantity' => $quantity,
-            ];
-        }
+                    'quantity' => $product->getQuantity(),
+                ];
+            }
+            
+            if ($order->getTotal() != 0) {
+            Stripe::setApiKey('sk_test_51MRcwIKaaFB9v3Nj9sgqotmTLQnY9gE2pMOicWV51mfwsKhTpPGXuoozq2o7HxZuQHoCtOpcvfsUFK8KmEiMX5tX008ahHsQ41');
 
-        Stripe::setApiKey('sk_test_51MWxSqJBf835V8Oop84OnNLXAEpwVaPYgqugvJhX0q88Fin7nJAXGpUCSlTcqwb6lXLYJlRTmBP8WDnmv8FmBFtq00x7AnkH07');
+                $checkout_session = Session::create([
+                    'customer_email' => $order->getUser()->getEmail(),
+                    'payment_method_types' => ['card'],
+                    'line_items' => [
+                        $products_for_stripe
+                    ],
+                    'mode' => 'payment',
+                    'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
+                    'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
+                ]);
+            
+                
+                $order->setStripeSessionId($checkout_session->id);
+                $this->entityManager->flush();
+                
+                
 
-            $checkout_session = Session::create([
+                $response = new JsonResponse(['id' => $checkout_session->id]);
+                
+                
+                return $this->redirect($checkout_session->url);
 
-                'payment_method_types' => ['card'],
-                'line_items' => [
-                    $products_for_stripe
-                ],
-                'mode' => 'payment',
-                'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
-                'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
-            ]);
+                } else {
 
-            // dump($checkout_session->id);
-            // dd($checkout_session);
+                    return $this->redirectToRoute('order_success_loyalty', array('id' => $order->getId()));
 
-            $response = new JsonResponse(['id' => $checkout_session->id]);
-
-            return $response;
+                }
         }
     }
 

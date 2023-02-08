@@ -21,7 +21,7 @@ class AccountPasswordController extends AbstractController
     }
 
 
-    #[Route('/account/modifier-mon-mot-de-passe', name: 'account_password')]
+    #[Route('/mon-compte/modifier-mon-mot-de-passe', name: 'account_password')]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
 

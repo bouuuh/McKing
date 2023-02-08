@@ -1,13 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}McKing - Carte{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+ {% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
 
 {% block content %}
+<div class='container-city'>
+  <h2 class="recap-title">Votre Restaurant</h2>
+{% if city %}
 
-    {{
-        form(form)
-    }}
+  <div class="thecity">
+    <p>{{ city.city }} <br> {{ city.code }}</p>
+</div>
 
+  <div class="change-city">
+    <p> Changez la ville :</p>
+      {{ form(form) }}
+  </div>
+ 
+{% else %}
+    <div class="change-city2">
+    <p> Choississez la ville de votre McKing :</p>
+      {{ form(form) }}
+  </div>
+{% endif %}
+</div>
+
+
+    
+
+
+
+
+ {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+   $('.select2-arrow').append('<i class="fa fa-angle-down"></i>');
+    $(document).ready(function() {
+        $('.js_cities').select2({
+  ajax: {
+    url: '{{ path('cities') }}',
+    dataType: 'json',
+    processResults: function (data) {
+      // Transforms the top-level key of the response object from 'items' to 'results'
+      return {
+        results: JSON.parse(data)
+      };
+    }
+  }
+});
+    });
+
+</script>
+ {% endblock %}
 {% endblock %}
 
 {% block navBar %}
