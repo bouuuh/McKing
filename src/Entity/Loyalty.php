@@ -18,7 +18,7 @@ class Loyalty
     private ?Product $product = null;
 
     #[ORM\Column]
-    private ?float $number_points = null;
+    private ?int $numberPoints = null;
 
     public function getId(): ?int
     {
@@ -37,14 +37,14 @@ class Loyalty
         return $this;
     }
 
-    public function getNumber_points(): ?float
+    public function getNumberPoints(): ?int
     {
-        return $this->number_points;
+        return $this->numberPoints;
     }
 
-    public function setNumber_points(float $number_points): self
+    public function setNumberPoints(int $numberPoints): self
     {
-        $this->number_points = $number_points;
+        $this->numberPoints = $numberPoints;
 
         return $this;
     }

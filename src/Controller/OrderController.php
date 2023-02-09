@@ -198,7 +198,8 @@ class OrderController extends AbstractController
              }   
              $points = $this->session->get('points', []);
 
-             if($this->session->get('point', []) != null){
+             if($points != null){
+
              foreach ($this->session->get('points', []) as $slug => $quantity) {
                 
                 $orderDetails = new OrderDetails();
@@ -211,22 +212,22 @@ class OrderController extends AbstractController
                 $user = $this->getUser();
                 $points = $user->getPoints();
                 $points_object = $this->entityManager->getRepository(Loyalty::class)->findOneByProduct($product_full);
-                if($points_object->getNumber_points() == 0){
+                if($points_object->getNumberPoints() == 0){
                     $test = 15;
                     $points = ($points - $test);
                     $user->setPoints($points);
                 }
-                elseif($points_object->getNumber_points() == 1){
+                elseif($points_object->getNumberPoints() == 1){
                     $test = 30;
                     $points = ($points - $test);
                     $user->setPoints($points);
                 }
-                elseif($points_object->getNumber_points() == 2){
+                elseif($points_object->getNumberPoints() == 2){
                     $test = 60;
                     $points = ($points - $test);
                     $user->setPoints($points);
                 }
-                elseif($points_object->getNumber_points() == 3){
+                elseif($points_object->getNumberPoints() == 3){
                     $test = 90;
                     $points = ($points - $test);
                     $user->setPoints($points);

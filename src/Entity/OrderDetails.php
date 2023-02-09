@@ -36,6 +36,10 @@ class OrderDetails
     #[ORM\ManyToOne(inversedBy: 'orderDetails')]
     private ?Menu $menu = null;
 
+    public function __toString(){
+        return $this->getIdProduct().' x'.$this->getQuantity();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

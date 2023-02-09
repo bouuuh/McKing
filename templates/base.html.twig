@@ -80,7 +80,7 @@
         </div>
 
         <div class="case case5">
-            <a href="{{ path('account') }}" class="Compte"><img class="icon_thenavBar" src="{{ asset('assets/images/Compte.svg') }}"></a>
+            <a href="{% if app.user %}{{ path('account') }}{% else %}{{ path('login') }}{% endif %}" class="Compte"><img class="icon_thenavBar" src="{{ asset('assets/images/Compte.svg') }}"></a>
         </div>
 
     </div>

@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Menu;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
+use App\Entity\Postal;
+use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +28,14 @@ class AccountHistoryController extends AbstractController
 
         $orders = $this->entityManager->getRepository(Order::class)->findSucessOrders($this->getUser());
 
-        // dd($orders);
+        $cities = [];
+        foreach ($orders as $key => $value) {
+            $cities[] = $this->entityManager->getRepository(Postal::class)->findOneById($value->getCity()->getId());
+        }
 
         return $this->render('account/history.html.twig', [
-            'orders' => $orders
+            'orders' => $orders,
+            'cities' => $cities
         ]);
     }
 
@@ -37,15 +44,23 @@ class AccountHistoryController extends AbstractController
     {
 
         $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
-
         $order_details = $this->entityManager->getRepository(OrderDetails::class)->findAll();
-        
-    
+        $product = $this->entityManager->getRepository(Product::class)->findAll();
+        $cities = $this->entityManager->getRepository(Postal::class)->findAll();
+        $menus = $this->entityManager->getRepository(Menu::class)->findAll();
+
+        $order_history = [];
+        foreach ($order_details as $value) {
+           if(($value->getIdOrder()->getId()) == $order->getId()){
+            $order_history[] = $value;
+           }
+        }
           
 
 
         return $this->render('account/history_order.html.twig', [
-            'order' => $order
+            'order' => $order,
+            'order_history' => $order_history
         ]);
     }
 }

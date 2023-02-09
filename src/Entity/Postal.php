@@ -13,6 +13,7 @@ class Postal
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -58,7 +59,7 @@ class Postal
 
         return $this;
     }
-    
+    #[Groups(['show_product'])]
     public function getText(): String
     {
         return $this->city.' - '.$this->code;

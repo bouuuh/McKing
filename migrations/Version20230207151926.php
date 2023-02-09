@@ -55,7 +55,7 @@ final class Version20230207151926 extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySQL80Platform'."
         );
 
-        $this->addSql('CREATE TABLE loyalty (id INT AUTO_INCREMENT NOT NULL, product_id INT NOT NULL, number_points DOUBLE PRECISION NOT NULL, INDEX IDX_7CC711964584665A (product_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+        $this->addSql('CREATE TABLE loyalty (id INT AUTO_INCREMENT NOT NULL, product_id INT NOT NULL, numberPoints DOUBLE PRECISION NOT NULL, INDEX IDX_7CC711964584665A (product_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
         $this->abortIf(
             !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MySQL80Platform,
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySQL80Platform'."

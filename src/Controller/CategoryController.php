@@ -39,6 +39,10 @@ class CategoryController extends AbstractController
     #[Route('/commander/{slug}', name: 'category_slug')]
     public function show($slug): Response
     {
+        $city = $this->session->get('city_session', []);
+        if ($city == null) {
+            return $this->redirectToRoute('map');
+        }
         $menus = null;
         $products = null;
 

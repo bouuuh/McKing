@@ -10,17 +10,26 @@
     </div>
     <a href="{{ path('account_history') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
     <h1 class="info-title">Détails de la commande</h1>
-                {{ dump(order) }}
-                <div class="arround-order-history-list">
-                    <div class="order-history-list">
-                            <h1>Lieu</h1>
-                            {# <p>{{ reference }}</p> #}
-                            <hr>
-                            <p>
-                                
-                            </p>
-                    </div>
-                </div>    
+
+            <div class"arround-order-history-list">  
+            <div class="order-history-list">
+                <h1>{{ order.city.city }}</h1>
+                <p>n°{{ order.reference }}</p>
+                <hr>
+            
+            {% for order_history in order_history %}
+                {{ dump(order_history) }}
+                    <p>
+                        {% if order_history.idMenu == null %}
+                            {{ order_history.idProduct.name }} - {{ (order_history.idProduct.price / 100)|number_format(2, ',', '.') }} €
+                        {% else %}
+                            {{ order_history.menu.name }}
+                        {% endif %}     
+                    </p>
+                    
+            {% endfor %}
+</div> 
+            </div>
 {% endblock %}
 
 {% block navBar %}

@@ -27,8 +27,7 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 0 %}
+    {% if points.numberPoints == 0 %}
         <div class="path-to-cart">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
@@ -54,8 +53,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 3 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 3 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
@@ -85,8 +84,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 1 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 1 %}
        <div class="path-to-cart">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
@@ -112,8 +111,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 3 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 3 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
@@ -143,8 +142,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 2 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 2 %}
         <div class="path-to-cart">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
@@ -170,8 +169,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 3 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 3 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
@@ -201,8 +200,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 3 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 3 %}
         <div class="path-to-cart">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/plus.svg') }}" alt=""></a>
@@ -228,8 +227,8 @@
     <div class="list-menu-content">
         <div class="path-to-cart-around">
 {% for points in points %}
-    {# {{ dump(points.number_points) }} #}
-    {% if points.number_points == 3 %}
+    {# {{ dump(points.numberPoints) }} #}
+    {% if points.numberPoints == 3 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
         <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>

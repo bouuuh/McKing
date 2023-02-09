@@ -14,12 +14,12 @@
             <p>Vous n'avez pas encore passé de commande.</p>
         {% else %}
             {% for order in orders %}
-                {# {{ dump(order) }} #}
+                
                 <div class="arround-order-history-list">
                     <div class="order-history-list">
                         <a href="{{ path('account_history_order', { 'reference' : order.reference }) }}">
                             <h1>Commande n°{{ order.reference }}</h1>
-                            <p>{{ order.date|date('d/m/Y') }} - lieu</p>
+                            <p>{{ order.date|date('d/m/Y') }} - {{ order.city.city }}</p>
                             <br>
                             <p>
                                 {{ (order.total / 100)|number_format(2, ',', '.') }} € - 

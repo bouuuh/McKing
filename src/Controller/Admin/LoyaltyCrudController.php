@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class LoyaltyCrudController extends AbstractCrudController
 {
@@ -21,7 +22,7 @@ class LoyaltyCrudController extends AbstractCrudController
     {
         return [
             AssociationField::new('product', 'Produit'),
-            ChoiceField::new('number_points', 'Points')->setChoices([
+            ChoiceField::new('numberPoints', 'Points')->setChoices([
                 '15 points' => 0,
                 '30 points' => 1,
                 '60 points' => 2,

@@ -44,7 +44,7 @@ class RegisterController extends AbstractController
                 $this->entityManager->flush();
 
 
-                return $this->redirectToRoute('login');
+                return $this->redirectToRoute('home');
             } else {
                 $notification = 'Le mail existe déjà !';
             }
