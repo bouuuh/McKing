@@ -2,12 +2,12 @@
 
 {% block title %}Fidélité - McKing{% endblock %}
 
+{% block headerProduct %}
+{% endblock %}
+
 {% block content %}
 
 <div class="contour2">
-    <div class="logo-loyalty">
-        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
-    </div>
 {% if app.user %}
 
     {% if points_session %}
@@ -17,7 +17,7 @@
     {% endif %}
 <div class="contour-loyalty">
 
-{% if points_session > 15 %}
+{% if points_session >= 15 %}
 
 <div class="list-menu">
     <div class="list-menu-title">
@@ -54,10 +54,10 @@
         <div class="path-to-cart-around">
 {% for points in points %}
     {# {{ dump(points.numberPoints) }} #}
-    {% if points.numberPoints == 3 %}
+    {% if points.numberPoints == 0 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
-        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        <a href=""><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
         </div>
         <div class="to-cart-div">
         <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
@@ -75,7 +75,7 @@
 
 
 
-{% if points_session > 30 %}
+{% if points_session >= 30 %}
 <div class="list-menu">
     <div class="list-menu-title">
         <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
@@ -112,10 +112,10 @@
         <div class="path-to-cart-around">
 {% for points in points %}
     {# {{ dump(points.numberPoints) }} #}
-    {% if points.numberPoints == 3 %}
+    {% if points.numberPoints == 1 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
-        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        <a href=""><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
         </div>
         <div class="to-cart-div">
         <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
@@ -133,7 +133,7 @@
 
 
 
-{% if points_session > 60 %}
+{% if points_session >= 60 %}
 <div class="list-menu">
     <div class="list-menu-title">
         <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
@@ -170,10 +170,10 @@
         <div class="path-to-cart-around">
 {% for points in points %}
     {# {{ dump(points.numberPoints) }} #}
-    {% if points.numberPoints == 3 %}
+    {% if points.numberPoints == 2 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
-        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        <a href=""><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
         </div>
         <div class="to-cart-div">
         <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
@@ -191,7 +191,7 @@
 
 
 
-{% if points_session > 90 %}
+{% if points_session >= 90 %}
 <div class="list-menu">
     <div class="list-menu-title">
         <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
@@ -231,7 +231,7 @@
     {% if points.numberPoints == 3 %}
         <div class="path-to-cart not-enough">
         <div class="to-cart-div">
-        <a href="{{ path('add_points_to_cart', {slug : points.product.slug}) }}"><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
+        <a href=""><img src="{{ asset('/assets/images/circle.svg') }}" alt=""></a>
         </div>
         <div class="to-cart-div">
         <img src="/uploads/{{ points.product.visual }}" alt="{{ points.product.name }}">
@@ -265,11 +265,11 @@
     <p>Vous allez aimer avoir un compte ;)</p>
         <div class="loyalty-content">
             <h1>1€ = 1 point</h1>
-            <p>Jusqu'à 200 points cumulables</p>
+            <p>On vous récompense pour votre fidélité</p>
         </div>
-        <p class="loyalty-text">A 140 point, un menu McCking Platine GRATUIT !</p>
+        <p class="loyalty-text">A 90 point, un King Beef OFFERT !</p>
         <div class="menu-img">
-        <img src="{{ asset('assets/images/Menu McKing Platine.png') }}" alt="Menu McKing Platine">
+        <img src="{{ asset('assets/images/King Supreme.png') }}" alt="King Beef">
         </div>
         <div class="loyalty-register-btn">
             <a href="{{ path('register') }}">Inscrivez vous !</a>

@@ -7,18 +7,31 @@
     <div class="around">
     <div class="container-register-orange">
     <div class="connect-logo">
-    <img src="{{ asset('assets/images/Logo.svg') }}">
+    <a href="{{ path('home') }}"><img src="{{ asset('assets/images/Logo.svg') }}"></a>
     </div>
+
+<div class='picture-content-register'>
+    <div class="picture-register">
+        <a href="{{ path('home') }}"><img src="{{ asset('assets/images/connexion.png') }}" alt="Photo de produits"></a>
+    </div>  
+
     <div  class="content-register">
     <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
     <div class="login-input">
     <div>
         <label for="inputEmail">Email</label>
     </div>
-    <div>
+    <div class='input-connect'>
         <input type="email" value="{{ last_username }}" name="email" autocomplete="email" required autofocus>
     </div>
     
@@ -27,21 +40,26 @@
     <div>
         <label for="inputPassword">Mot de passe</label>
     </div>
-    <div>
+    <div class='input-connect'>
         <input type="password" name="password" autocomplete="current-password" required>
     </div>
     </div>
        <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-  
      <button class="button-connect" type="submit">
         Se connecter
     </button>
 </form>   
-    <div class="register">
-    <p>Pas de compte ? <a href="{{ path('register') }}">Inscrivez-vous ici</a>.</p>
+    <div class="little-text-login">
+        <div class="little-text-login">
+            <p><a href="{{ path('reset_password') }}">Mot de passe oublié ?</a>.</p> 
+        </div>
+        <div class="little-text-login">
+            <p>Pas de compte ? <a href="{{ path('register') }}">Inscrivez-vous ici</a>.</p>
+        </div>
     </div>
+  </div>
   </div>
     </div>
     </div>

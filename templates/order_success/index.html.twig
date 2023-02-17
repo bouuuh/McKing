@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Confirmation de commande - McKing{% endblock %}
+{% block headerProduct %}
+{% endblock %}
 
 {% block content %}
     {# {{ dump(order) }} #}
@@ -15,6 +17,14 @@
         <br>
         Votre commande n°<strong>{{ order.reference }}</strong> à bien été prise en compte.
         </p>
+        <hr>
+        {% if order.stripeSessionId != null %}
+            <p><a href="{{ path('facture', { stripeSessionId: order.stripeSessionId }) }}">Télécharger votre facture</a></p>
+        {% else %}
+            <p><a href="{{ path('facture_id', { id: order.id }) }}">Télécharger votre facture</a></p>
+        {% endif %}
+        
+        
         <hr>
         <p>Vous trouverez l'historique de vos commandes dans votre espace <a href="{{ path('account') }}">compte</a>.</p>
 

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - McKing{% endblock %}
+
+{% block content %}
+
+    <div class="around">
+    <div class="container-register-orange">
+    <div class="connect-logo">
+    <a href="{{ path('home') }}"><img src="{{ asset('assets/images/Logo.svg') }}"></a>
+    </div>
+
+<div class='picture-content-register'>
+    <div class="picture-register">
+        <a href="{{ path('home') }}"><img src="{{ asset('assets/images/connexion.png') }}" alt="Photo de produits"></a>
+    </div>  
+
+    <div  class="content-register">
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+   {{ form(form) }}
+
+
+
+{% endblock %}

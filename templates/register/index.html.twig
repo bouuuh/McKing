@@ -4,11 +4,17 @@
 
 
 {% block content %}
-<div class="around">
+<div class="register-logo-pc">
+    <a href="{{ path('home') }}"><img src="{{ asset('assets/images/Logo.svg') }}"></a>
+</div>
+<div class="around around-register">  
 <div class="container-register">
     <div class="register-logo">
-    <img src="{{ asset('assets/images/Logo.svg') }}">
+        <a href="{{ path('home') }}"><img src="{{ asset('assets/images/Logo.svg') }}"></a>
     </div>
+    <div class="picture-register">
+        <img src="{{ asset('assets/images/inscription.png') }}" alt="Photo de produits">
+    </div>  
     <div  class="content-register">
     
     <div class="alert-error-div">
@@ -29,13 +35,13 @@
     {% endif %}
     </div>
     {{ form(form) }}
-    </div>
     <div class="connect">
     <p>Déjà membre ? <a href="{{ path('login') }}">Connectez-vous ici</a>.</p>
     </div>
-</div>
+    </div>
+    
 </div>
 
-
+</div>
 
 {% endblock content %}

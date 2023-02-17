@@ -12,12 +12,12 @@
 
 
 <div class="menu-content">
-    {#********************TITRE********************#}
+<div class="img_product">
+ 
     <h1 class="product_title">{{ product.name }}</h2>
-    {#********************IMAGE PRODUIT********************#}
-    <div class="img_product">
+    
         <img src="/uploads/{{ product.visual }}" alt="{{ product.name }}" >
-    </div>
+    
     {#********************PRIX********************#}
     <div class="product_price">
         {{ (product.price / 100)|number_format(2, ',', '.') }} €
@@ -28,8 +28,9 @@
                 <img src="{{ asset('assets/images/Cart.svg') }}" alt="Ajouter au panier">
             </a>
         </div>
+        </div>
     {#********************DESCRIPTION********************#}    
-        
+        <div>
     <div class="list-menu">
         <div class="list-menu-title">
             <img src="{{ asset('/assets/images/arrowbottom.svg') }}" alt="Fleche du bas" class="img-list-menu">
@@ -56,6 +57,7 @@
         </div>    
     </div>
     {% endif %}
+</div>
 </div>
 </div> 
 <script>

@@ -9,15 +9,17 @@
 <div class="contour2">
     <a href="/commander/menus" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt=""></a>
     <div class="menu-content">
+
+    <div class='title-menu-img'>
     <h2 class="title-menu">Menu {{ menus.name }}</h2>
         <img src="/uploads/{{ menus.visual }}" alt="{{ menus.name }}" class="menu-visual">
-
+</div>
         
 
 
 
 
-
+<div>
 {{ form_start(form) }}
 
 
@@ -236,6 +238,7 @@
            
         
 {{ form_end(form) }}
+    </div>
     </div>
     
     

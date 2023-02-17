@@ -40,24 +40,93 @@ class StripeController extends AbstractController
 
             
             foreach ($order->getOrderDetails()->getValues() as $product) {
-
-                $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
-
                 
-
-                $products_for_stripe[] = [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'unit_amount' => $product->getPrice(),
-                        'product_data' => [
-                            'name' => $product->getIdProduct(),
-                            'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+               if ($product->getMenu() == null) {
+                $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
+                    $products_for_stripe[] = [
+                        'price_data' => [
+                            'currency' => 'eur',
+                            'unit_amount' => $product->getPrice(),
+                            'product_data' => [
+                                'name' => $product->getIdProduct(),
+                                'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                            ],
                         ],
-                    ],
-                    'quantity' => $product->getQuantity(),
-                ];
+                        'quantity' => $product->getQuantity(),
+                 ];
+               }else {
+                    if ($product->getMenu()->getId() == '1') {
+                        if ($product->getIdProduct()->getCategory()->getId() == '2') {
+                            $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
+                            $products_for_stripe[] = [
+                                'price_data' => [
+                                    'currency' => 'eur',
+                                    'unit_amount' => $product->getPrice() + 330,
+                                    'product_data' => [
+                                        'name' => "Menu McKing - ".$product->getIdProduct(),
+                                        'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                                    ],
+                                ],
+                                'quantity' => $product->getQuantity(),
+                         ];
+                        }
+                    }
+                    elseif ($product->getMenu()->getId() == '2') {
+                        if ($product->getIdProduct()->getCategory()->getId() == '2') {
+                            $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
+                            $products_for_stripe[] = [
+                                'price_data' => [
+                                    'currency' => 'eur',
+                                    'unit_amount' => $product->getPrice() + 380,
+                                    'product_data' => [
+                                        'name' => "Menu Maxi McKing - ".$product->getIdProduct(),
+                                        'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                                    ],
+                                ],
+                                'quantity' => $product->getQuantity(),
+                         ];
+                        }
+                    }
+                    elseif ($product->getMenu()->getId() == '3') {
+                        if ($product->getIdProduct()->getCategory()->getId() == '2') {
+                            $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
+                            $products_for_stripe[] = [
+                                'price_data' => [
+                                    'currency' => 'eur',
+                                    'unit_amount' => $product->getPrice() + 580,
+                                    'product_data' => [
+                                        'name' => "Menu McKing Platine - ".$product->getIdProduct(),
+                                        'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                                    ],
+                                ],
+                                'quantity' => $product->getQuantity(),
+                         ];
+                        }
+                    }
+                    elseif ($product->getMenu()->getId() == '4') {
+                        if ($product->getIdProduct()->getCategory()->getId() == '2') {
+                            $product_full = $this->entityManager->getRepository(Product::class)->findOneById($product->getIdProduct());
+                            $products_for_stripe[] = [
+                                'price_data' => [
+                                    'currency' => 'eur',
+                                    'unit_amount' => 428,
+                                    'product_data' => [
+                                        'name' => "Menu McKing Kids - ".$product->getIdProduct(),
+                                        'images' => [$YOUR_DOMAIN."/uploads".$product_full->getVisual()]
+                                    ],
+                                ],
+                                'quantity' => $product->getQuantity(),
+                         ];
+                        }
+                    }
+                }
+                    
+                    
+               
             }
             
+
+
             if ($order->getTotal() != 0) {
             Stripe::setApiKey('sk_test_51MRcwIKaaFB9v3Nj9sgqotmTLQnY9gE2pMOicWV51mfwsKhTpPGXuoozq2o7HxZuQHoCtOpcvfsUFK8KmEiMX5tX008ahHsQ41');
 

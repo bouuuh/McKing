@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Mail;
 use App\Entity\User;
 use App\Form\RegisterFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +43,10 @@ class RegisterController extends AbstractController
                 $user->setPassword($password);
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
+
+                $mail = new Mail();
+                $content = "Bonjour ".$user->getFirstName()."<br> Bienvenue chez McKing ! <br> <br>N'hésite pas à passer commande :)";
+                $mail->send($user->getEmail(), $user->getFirstName(), 'Votre compte McKing a été crée', 'Inscription chez McKing', $content);
 
 
                 return $this->redirectToRoute('home');

@@ -41,7 +41,10 @@ class MapController extends AbstractController
                 $city_session = $chosen_city;
             }
             $this->session->set('city_session', $chosen_city);
-        }
+              
+            }
+        
+        
 
 
 

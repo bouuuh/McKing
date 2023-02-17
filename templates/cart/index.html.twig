@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="contour2">
+<div class="contour3">
     <h1 class="cart-title">Panier</h1>
 
     <div class="container-cart">
@@ -39,7 +39,7 @@
                  {% set total = total + (menus.burger.price + menus.drink.price + menus.sauce.price + 200) %}     
                 {% elseif menus.menu.name == 'McKing Kids' %}
                      4,30€
-                 {% set total = total + 430 %}
+                 {% set total = total + 428 %}
                 {% endif %}
             </div>
             <div class="cart-info">
@@ -60,18 +60,18 @@
                  <li>{{ menus.sauce.name }}</li>
                  {% elseif menus.menu.name == 'Maxi McKing' %}
                  <li>Grande Frite</li>
-                <li>{{ menus.burger.name }}</li>
+                 <li>{{ menus.burger.name }}</li>
                  <li>{{ menus.drink.name }}</li>
                  <li>{{ menus.sauce.name }}</li>
                  {% elseif menus.menu.name == 'McKing Platine' %}
                  <li>Grande Frite</li>
-                <li>{{ menus.burger.name }}</li>
-                <li>{{ menus.snack.name }}</li>
+                 <li>{{ menus.burger.name }}</li>
+                 <li>{{ menus.snack.name }}</li>
                  <li>{{ menus.drink.name }}</li>
                  <li>{{ menus.sauce.name }}</li>
                 {% elseif menus.menu.name == 'McKing Kids' %}
-                <li>Petite Frite</li>
-                <li>{{ menus.burger.name }}</li>
+                 <li>Petite Frite</li>
+                 <li>{{ menus.burger.name }}</li>
                  <li>{{ menus.sauce.name }}</li>
                  <li>{{ menus.dessert.name }}</li>
                 {% endif %}

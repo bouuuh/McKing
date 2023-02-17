@@ -1,0 +1,258 @@
+
+	<style type="text/css">
+                <!--  table
+                {
+                        width: 100%;
+                        border-collapse:collapse;
+                font-size:16px}
+ 
+ 
+                .header td
+                {
+                        width: 50%;
+                vertical-align: top}
+ 
+ 
+                .text-left
+                {
+                text-align: left}
+ 
+ 
+                .text-right
+                {
+                text-align: right}
+ 
+ 
+                .text-center
+                {
+                text-align: center}
+ 
+ 
+                .separator
+                {
+                        height: 20px;
+                width: 100%}
+ 
+ 
+                .content td
+                {
+                        border:solid 1px #CFD1D2;
+                        padding: 5px;
+                }
+ 
+ 
+                .content th
+                {
+                        border:solid 1px #000000;
+                        padding: 5px;
+                        background-color: #000000;
+                color: #FFFFFF}
+ 
+ 
+                .ligne1Content
+                {
+                background-color:#57B223}
+ 
+ 
+                .couleurgris
+                {
+                        background-color:#DDDDDD;
+                        height:auto;
+                }
+ 
+ 
+                .tht, .taxe, .ttc
+                {
+                        font-size: 1.2em;
+                }
+ 
+ 
+                .ttc
+                {
+                        color:#E31B00;
+                        font-weight:bold;
+                }
+ 
+ 
+                .couleurverte
+                {
+                background-color: #E31B00}
+ 
+ 
+                .couleurmoinsgris
+                {
+                        background: #EEEEEE;
+                }
+ 
+ 
+                .taille1
+                {
+                        width:40%;
+                }
+                .taille6{
+                    width:100%;
+                }
+ 
+                .taille2
+                {
+                        width:15%;
+                }
+ 
+ 
+                .taille3
+                {
+                        width:15%;
+                }
+ 
+ 
+                .taille4
+                {
+                        width:20%;
+                }
+ 
+ 
+                .taille5
+                {
+                        width:10%;
+                }
+ 
+ 
+                .header1
+                {
+                width:50%}
+ 
+ 
+                .header2
+                {
+                width:50%}
+ 
+ 
+                .tailleligne
+                {
+                        height:auto;
+                }
+ 
+ 
+                .taille1, taille2, taille3, taille4, taille5
+                {
+                        height:auto;
+                }
+ 
+ 
+                span
+                {
+                        font-size:14px;
+                        font-weight:bold;
+                        color:#E31B00;
+                }
+ 
+ 
+                h1, h2, h3
+                {
+                        color:#E31B00;
+                }
+ 
+ 
+                .colorwhite
+                {
+                color:white}
+        </style>
+	<table class="header">
+		<tr>
+			<td class="text-lef">
+				<h1>Facture</h1>
+				<br>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-left">
+				<span>DE :</span>
+				
+				McKing {{order.city.city}}
+				<br>
+			</td>
+			<td class="text-right">
+				<span>FACTURE N°:</span>
+				 {{ order.reference }}
+				<br/>
+				<br/>
+				<span>DATE: </span>
+				{{ order.date|date('d-m-Y') }}
+				<br/>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-left">
+				<br/>
+				<br/>
+		
+				<br/>
+				<br/>
+				<span>FACTURÉ À :</span>
+                
+
+				{{order.user.firstname}} {{order.user.lastname}}
+				<br>
+                <br/>
+				<br/>
+			</td>
+			<td class="text-right"></td>
+		</tr>
+	</table>
+	<table class="content">
+		<tbody>
+
+
+{% set menuid = 0 %}
+{% for orderDetails in orderDetails %}
+          <tr>
+
+                    {% if orderDetails.idMenu == null %}
+                   <td colspan="4" class="text-center ">{{ orderDetails.idProduct.name }}</td>
+                   {% if order.stripeSessionId != null %}
+                        {% if orderDetails.price == 0 %}
+                                <td class="text-center ">Offert</td>
+                                {% else %}
+                                <td class="text-center ">{{ (orderDetails.idProduct.price / 100)|number_format(2, ',', '.') }}€</td>
+                                {% endif %}
+                   {% elseif order.stripeSessionId == null %}
+                        <td class="text-center ">Offert</td>
+                   {% endif %}
+                        {% else %}
+                                {% if menuid == orderDetails.idMenu %}         
+                                {% else %}
+                                {% set menuid = orderDetails.idMenu %}
+                                <td colspan="4" class="text-center"> Menu {{orderDetails.menu.name}} - {{ orderDetails.idProduct.name }} </td>
+                                        {% if orderDetails.menu.id == '1' %}
+                                <td class="text-center ">{{ ((orderDetails.idProduct.price + 330)/ 100 )|number_format(2, ',', '.') }}€</td>
+                                        {% elseif orderDetails.menu.id == '2' %}
+                                <td class="text-center ">{{ ((orderDetails.idProduct.price + 380 )/ 100)|number_format(2, ',', '.') }}€</td>
+                                        {% elseif orderDetails.menu.id == '3' %}
+                                <td class="text-center ">{{ ((orderDetails.idProduct.price + 580) / 100)|number_format(2, ',', '.') }}€</td>
+                                        {% elseif orderDetails.menu.id == '4' %}
+                                <td class="text-center ">{{ (428 / 100)|number_format(2, ',', '.') }}€</td>
+                                        {% endif %}
+                                {% endif %}
+                        {% endif %}     
+                    
+     
+              </tr>      
+            {% endfor %}
+
+		
+ 
+ 
+		</tbody>
+		<tfoot>
+	
+			<tr>
+				<td colspan="4" class="text-center">
+					<h3>TOTAL TTC À PAYER</h3>
+				</td>
+				<td class="text-center">
+					<h3> {{ (order.total / 100)|number_format(2, ',', '.') }}€</h3>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+

@@ -98,18 +98,9 @@ class OrderController extends AbstractController
                 $orderDetails->setQuantity($quantity);
                 $orderDetails->setPrice($product_full->getPrice());
                 $orderDetails->setTotal($product_full->getPrice() * $quantity);
-                $user = $this->getUser();
-                $points = $user->getPoints();
-                $test = ($product_full->getPrice() * $quantity)/100;
-                $points = ($points + $test);
-                $user->setPoints($points);
                 $this->entityManager->persist($orderDetails);
                 $total = $total + ($product_full->getPrice() * $quantity);
                 
-            }
-            if(!empty($this->session->get('cart', []))){
-                $user->setPoints(number_format($points, 0));
-                $this->entityManager->persist($user);
             }
         }
             $menus = $this->session->get('list_item', []);
@@ -131,11 +122,6 @@ class OrderController extends AbstractController
                         $orderDetails->setQuantity(1);
                         $orderDetails->setPrice($product_full->getPrice());
                         $orderDetails->setTotal($product_full->getPrice());
-                        $user = $this->getUser();
-                        $points = $user->getPoints();
-                        $test = ($product_full->getPrice())/100;
-                        $points = ($points + $test);
-                        $user->setPoints($points);
                         $this->entityManager->persist($orderDetails);
                         $total = $total + ($product_full->getPrice());
                         }
@@ -150,19 +136,10 @@ class OrderController extends AbstractController
                             $orderDetails->setQuantity(1);
                             $orderDetails->setPrice(200);
                             $orderDetails->setTotal(200);
-                            $user = $this->getUser();
-                            $points = $user->getPoints();
-                            $test = 2;
-                            $points = ($points + $test);
-                            $user->setPoints($points);
-                            $total = $total + ($product_full->getPrice());
+                           $total = $total + 200;
                             $this->entityManager->persist($orderDetails);
                         }
 
-                    }
-                    if(!empty($this->session->get('list-item', []))){
-                        $user->setPoints(number_format($points, 0));
-                        $this->entityManager->persist($user);
                     }
                    
                }
@@ -177,20 +154,11 @@ class OrderController extends AbstractController
                             $menu_full = $this->entityManager->getRepository(Menu::class)->findOneById($value['menu']->getId());
                             $orderDetails->setMenu($menu_full);
                             $orderDetails->setQuantity(1);
-                            $orderDetails->setPrice(107.5);
+                            $orderDetails->setPrice(107);
                             $orderDetails->setTotal(107.5);
-                            $user = $this->getUser();
-                            $points = $user->getPoints();
-                            $test = 1.075;
-                            $points = ($points + $test);
-                            $user->setPoints($points);
-                            $total = $total + ($product_full->getPrice());
+                            $total = $total + 107;
                             $this->entityManager->persist($orderDetails);
                             }
-                    }
-                    if(!empty($this->session->get('list-item', []))){
-                        $user->setPoints(number_format($points, 0));
-                        $this->entityManager->persist($user);
                     }
                 }
 
@@ -209,36 +177,10 @@ class OrderController extends AbstractController
                 $orderDetails->setQuantity(1);
                 $orderDetails->setPrice(0);
                 $orderDetails->setTotal(0);
-                $user = $this->getUser();
-                $points = $user->getPoints();
-                $points_object = $this->entityManager->getRepository(Loyalty::class)->findOneByProduct($product_full);
-                if($points_object->getNumberPoints() == 0){
-                    $test = 15;
-                    $points = ($points - $test);
-                    $user->setPoints($points);
-                }
-                elseif($points_object->getNumberPoints() == 1){
-                    $test = 30;
-                    $points = ($points - $test);
-                    $user->setPoints($points);
-                }
-                elseif($points_object->getNumberPoints() == 2){
-                    $test = 60;
-                    $points = ($points - $test);
-                    $user->setPoints($points);
-                }
-                elseif($points_object->getNumberPoints() == 3){
-                    $test = 90;
-                    $points = ($points - $test);
-                    $user->setPoints($points);
-                }
+                
                 
                  $this->entityManager->persist($orderDetails);
                 
-            }
-            if(!empty($this->session->get('points', []))){
-                $user->setPoints(round($points));
-                $this->entityManager->persist($user);
             }
         }
             $order->setTotal($total);

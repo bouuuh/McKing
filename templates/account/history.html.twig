@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Mon historique de commande - McKing{% endblock %}
-
+{% block headerProduct %}
+{% endblock %}
 {% block content %}
 
 <div class="contour2">
-    <div class="logo-loyalty">
-        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
-    </div>
+
     <a href="{{ path('account') }}" class="arrow"><img src="{{ asset('/assets/images/arrow.svg') }}" alt="retour"></a>
     <h1 class="info-title">Mes commandes</h1>
         {% if orders|length == 0 %}
             <p>Vous n'avez pas encore passé de commande.</p>
         {% else %}
+        <div class="arround-order-history-list">
             {% for order in orders %}
                 
-                <div class="arround-order-history-list">
+                
                     <div class="order-history-list">
                         <a href="{{ path('account_history_order', { 'reference' : order.reference }) }}">
                             <h1>Commande n°{{ order.reference }}</h1>
@@ -35,9 +35,14 @@
                             </p>
                         </a>
                     </div>
-                </div>    
+                 
+                
             {% endfor %}
+            </div> 
         {% endif %}
+
+
+        </div>
 {% endblock %}
 
 {% block navBar %}

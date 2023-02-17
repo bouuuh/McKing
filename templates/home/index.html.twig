@@ -3,12 +3,57 @@
 {% block title %}McKing - Accueil{% endblock %}
 
 
-
-   
-
-
-
 {% block content %}
+{% if app.user %}
+
+ <div class="order-header-pc">
+      <div class='header-ancre-pc'>
+      <a href="{{ path('home') }}">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="logo"></a>
+        <a href="{{ path('map') }}">Mon Restaurant</a>
+        <a href="{{ path('category') }}">Commander</a>
+        <a href="{{ path('loyalty') }}">Fidélité</a>
+        <a href="{{ path('account') }}">Mon Compte</a>
+      </div>
+         <div class='hello-cart'>
+        <div class='hello-name'>
+         {% if points_session %}
+        <p>Bonjour {{ app.user.firstname }}, <br> vous disposez de <span>{{ points_session }} points</span></p>
+        {% else %}
+        <p>Bonjour {{ app.user.firstname }}, <br> vous disposez de <span>{{ app.user.points }} points</span></p>
+        {% endif %}
+        </div>
+        <div>
+            <a href="{{ path('cart') }}" class="order-cart-btn order-cart-btn-pc">
+                <img src="{{ asset('assets/images/Cart.svg') }}" alt="Panier">
+            </a>
+            </div>
+        </div>
+      
+    </div>
+
+{% else %}
+
+ <div class="order-header-pc">
+      <div class='header-ancre-pc'>
+      <a href="{{ path('home') }}">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="logo"></a>
+        <a href="{{ path('map') }}">Mon Restaurant</a>
+        <a href="{{ path('category') }}">Commander</a>
+        <a href="{{ path('loyalty') }}">Fidélité</a>
+      </div>
+      <div class="button-header-pc">
+      <div>
+        <a href="{{ path('register') }}">S'inscrire</a>
+        </div>
+        <div>
+        <a href="{{ path('login') }}">Connexion</a>
+        </div>
+      </div>
+</div>
+
+{% endif %}
+
 <div class="headerBar-around">
     <div class="headerBar">
     <div class="logo-and-cart">
@@ -55,16 +100,37 @@
 
 
 
-<div class="contour2">
+<div class="contour-home">
 
+<h2>McKing, le Roi du Fast-Food</h2>
+
+<div class="illustrations">
     {% for illustration in illustration %}
     
     <div class="illustration-home">
-        <a href="{{ path('category') }}"><img src="/uploads/{{ illustration.visual }}" alt="{{ illustration.name }}" >
+        <a href="{{ path('category') }}"><img src="/uploads/{{ illustration.visual }}" alt="{{ illustration.name }}" ></a>
     </div>
     
     {% endfor %}
 </div>
+
+<div class='home-loyalty'>
+<h2>La Fidélité a du bon</h2>
+<img src="{{ asset('assets/images/home_loyalty.png') }}" alt="offre de fidélité">
+
+{% if app.user %}
+<a href="{{ path('loyalty') }}"><div>Dépensez vos points</div></a>
+{% else %}
+<a href="{{ path('register') }}"><div>Inscrivez-vous !</div></a>
+    
+{% endif %}
+
+
+
+</div>
+
+</div>
+
 
 {% endblock content %}
 

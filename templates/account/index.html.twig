@@ -2,12 +2,12 @@
 
 {% block title %}Mon compte - McKing{% endblock %}
 
+{% block headerProduct %}
+{% endblock %}
 {% block content %}
 
 <div class="contour2">
-    <div class="logo-loyalty">
-        <img src="{{ asset('assets/images/Logo.svg') }}" alt="Logo McKing">
-    </div>
+
 {% if app.user %}
 
     <h1 class="account-title">Mon Compte</h1>
@@ -28,16 +28,26 @@
     </div>
     <div class="account-case">
         <img src="{{ asset('assets/images/MentionsLegales.svg') }}" alt="">
-        <a href="">
+        <a href="{{ path('account_ml') }}">
         <p>Mentions Légales</p>
         </a>
     </div>
     <div class="account-case">
         <img src="{{ asset('assets/images/Pen.svg') }}" alt="">
-        <a href="">
+        <a href="{{ path('account_cgv') }}">
         <p>CGV</p>
         </a>
     </div>
+    {% if is_granted("ROLE_ADMIN") %}
+    
+    <div class="account-case">
+        <img src="{{ asset('assets/images/Logo.svg') }}" alt="">
+        <a href="{{ path('admin') }}">
+        <p>Admin</p>
+        </a>
+    </div>
+
+    {% endif %}
     <div class="account-case">
         <img src="{{ asset('assets/images/logout.svg') }}" alt="">
         <a href="{{ path('app_logout') }}">

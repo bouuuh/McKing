@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable - McKing{% endblock %}
+
+{% block headerProduct %}
+{% endblock %}
+
+{% block content %}
+    <div class="contour">
+        <h1 class="info-title">Page introuvable</h1>
+            <p class="error-p">Désolé, cette page ne semble pas existé.</p>
+            <div class="error-btn-around">
+                <div class="error-btn">
+                    <a href="{{ path('home') }}">Retour à l'accueil</a>
+                </div>
+            </div>
+    </div>
+{% endblock %}
+
+{% block navBar %}
+{% endblock %}

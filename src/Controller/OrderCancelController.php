@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,10 @@ class OrderCancelController extends AbstractController
 
         if (!$order || $order->getUser() != $this->getUser()) {
             return $this->redirectToRoute('home');
+
+            $mail = new Mail();
+            $content = "Bonjour ".$order->getuser()->getFirstName()."<br> Merci pour votre commande.";
+            $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstName(), 'Votre commande McKing à été annulée', 'Commande chez McKing', $content);
         }
 
 

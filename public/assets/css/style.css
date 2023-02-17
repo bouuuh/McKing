@@ -4,6 +4,20 @@
     padding: 0;
     
 }
+
+@media screen and (min-width: 1000px) {
+
+    .order-header-pc p {
+        color: white;
+        font-family: 'Lilita One', cursive;
+    }
+
+    .order-cart-btn-pc {
+        margin-right: 4vw;
+    }
+
+}
+
 .headerBar-around{
     background-color: #e4e4e4;
 }
@@ -72,6 +86,59 @@ span {
 }
 /************************** Bottom NavBar ***********************/
 
+@media screen and (min-width: 1000px) {
+    .thenavBar{
+        display:none!important;
+    }
+
+    .the-footer {
+        position: relative;
+        display: flex!important;
+        width: 100%;
+        height: 25vh;
+        justify-content: space-evenly;
+        background-color: #000000;
+    }
+
+    .footer-items {
+        margin-top: 6vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-items h2 {
+        color: #F09F01;
+        font-family: 'Lilita One', cursive;
+    }
+
+    .footer-items li {
+        font-family: 'Lilita One', cursive;
+        font-size: 1.5vh;
+    }
+    ul{
+        padding-left: 0;
+    }
+    .footer-items a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .svg-follow2 {
+        margin-left: 1vw;
+    }
+
+    .logo-footer {
+        height: 10vh;
+    }
+
+
+}
+
+.the-footer {
+    display: none;
+}
+
 .thenavBar {
     position: fixed;
     display: flex;
@@ -139,7 +206,7 @@ span {
 
 .illustration-home {
     margin: auto;
-    margin-top: 1vh;
+    margin-top: 2vh;
 }
 
 .illustration-home img {
@@ -148,6 +215,17 @@ span {
 }
 
 /*************** Inscription ************/
+
+
+
+.register-logo-pc {
+    display: none;
+}
+
+.picture-register {
+    display: none;
+}
+
 .container-register{
     
     width: 100%;
@@ -156,8 +234,6 @@ span {
     border-radius: 20px;
 }
 .around{
-    width: 100vw;
-    height: 100vh;
     padding: 2vh;
     background-color: #f8f8f8;
 }
@@ -183,17 +259,20 @@ span {
 }
 
 #register_form div {
-    font-size: 40px;
-    margin-bottom: 2vh;
+    font-size: 4vh;
+    margin-bottom: 1vh;
     margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #register_form div label {
     margin-left: 4vw;
+    font-size: 2.5vh;
 }
 
 #register_form div input {
-    width: 65vw;
+    width: 100%;
     height: 4.5vh;
     border-radius: 50px;
     background-color: #e4e4e4;
@@ -212,7 +291,8 @@ span {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 6vh;
+    margin-top: 4vh;
+    font-size: 3vh;
 }
 
 .connect {
@@ -222,6 +302,25 @@ span {
 }
 
 /**************Category**************/
+
+@media screen and (min-width: 1000px) {
+
+    .title-category {
+        padding-top: 5vh;
+        padding-bottom: 5vh!important;
+    }
+
+    .container-category {
+        display: grid!important;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .category {
+        width: 30vw!important;
+    }
+
+}
+
 .category{
     width: 85vw;
     height: 15vh;
@@ -339,6 +438,7 @@ span {
 .img_product {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .product_price {
@@ -372,6 +472,16 @@ span {
 }
 
 /**************Panier**************/
+
+.contour3{
+    background-color: #e4e4e4;
+    display: flex;
+    flex-direction: column;
+    margin-top: -0.2vh;
+    min-height: 90vh;
+    padding-bottom: 25vh;
+}
+
 .container-cart {
     display: flex;
     flex-direction: column;
@@ -389,7 +499,7 @@ span {
     align-items: center;
     margin: auto;
     margin-bottom: 2vh;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
     width: 90vw;
     height: 10vh;
 }
@@ -416,8 +526,8 @@ span {
     align-items: center;
     margin: auto;
     border-radius: 20px;
-    bottom: 15vh;
-    position: fixed;
+    bottom: 20vh;
+    position: absolute;
 }
 
 
@@ -442,10 +552,10 @@ span {
     height: 3vh;
     justify-content: center;
     border-radius: 40px;
-    margin-left: 75vw;
+    margin-left: 70vw;
     margin-top: 1vh;
-    bottom: 10vh;
-    position: fixed;
+    bottom: 15vh;
+    position: absolute;
 }
 
 .cart-paid a {
@@ -507,6 +617,13 @@ span {
     text-align: center;
     font-family: 'Lilita One', cursive; 
     font-size: 2vh;
+}
+
+@media screen and (min-width: 1000px) {
+    .arround-loyalty {
+        margin-top: 5vh!important;
+        margin-bottom: 5vh!important;
+    }
 }
 
 .arround-loyalty {
@@ -809,6 +926,7 @@ span {
 }
 .form-place form {
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 .btn-place  {
@@ -862,6 +980,9 @@ span {
     filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.40));
 }
 /*************** Fidelite ****************/
+
+
+
 .path-to-cart-around{
     display: flex;
     flex-direction: column;
@@ -876,7 +997,7 @@ span {
     height: auto;
 }
 .to-cart-div {
-    width: 10%;
+ 
     height: auto;
     display: flex;
     align-items: center;
@@ -932,13 +1053,20 @@ span {
 .confirm-content h1 {
     font-family: 'Lilita One', cursive;
     font-size: 3.5vh;
-    margin-left: 5vw;
+    margin-bottom: 4vh;
 }
 
 .confirm-content p {
     font-family: 'Signika', sans-serif;
     font-size: 2vh;
-    margin-left: 5vw;
+    margin-bottom: 4vh;
+}
+.confirm-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1vh;
+    min-height: 60vh;
 }
 
 .return-home {
@@ -962,14 +1090,24 @@ span {
 
 /*************** Historique des commandes ****************/
 
+
+@media screen and (min-width: 1000px) {
+
+    
+
+}
+
 .arround-order-history-list {
     display: flex;
     justify-content: center;
     margin-bottom: 3vh;
+    flex-direction: column;
+    align-items: center;
 }
 
 .order-history-list {
     background-color: #F7F7F7;
+    margin-bottom: 2vh;
     width: 90vw;
     min-height: 15vh;
     display: flex;
@@ -981,6 +1119,7 @@ span {
 }
 
 .order-history-list a {
+    padding: 2vh;
     text-decoration: none;
     color: #000000;
 }
@@ -994,4 +1133,136 @@ span {
     font-family: 'Signika', sans-serif;
     font-size: 2vh;
 }
+
+@media screen and (min-width: 1000px) {
+    .order-header{
+        display:none;
+    }
+.cgv-text h1 {
+    padding-top: 4vh;
+}
+
+}
+
+/*************** CGV ****************/
+
+.cgv-text h1 {
+    font-family: 'Lilita One', cursive;
+    font-size: 4vh;
+    text-align: center;
+    color: #E31B00;
+}
+
+.cgv-text h2 {
+    font-family: 'Lilita One', cursive;
+    font-size: 3vh;
+    text-align: center;
+    color: #E31B00;
+}
+
+.cgv-text p {
+    font-family: 'Signika', sans-serif;
+    font-size: 2vh;
+    margin: 5vw;
+}
+
+/*************** Reset mot de passe ****************/
+
+@media screen and (min-width: 1000px) {
+    #reset_password_new_password_first {
+        width: 40vw!important;
+    }
+
+    #reset_password_new_password_second {
+        width: 40vw!important;
+    }
+
+    .submit-change-password {
+        width: 30vw!important;
+    }
+
+    #reset_password {
+        margin-top: 15vh;
+    }
+
+    .required {
+        margin-top: 2vh;
+    }
+
+    .little-text-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2vh;
+    }
+}
+
+.required {
+    font-size: 2.5vh;
+    font-family: 'Signika', sans-serif;
+}
+
+#reset_password_new_password_first {
+    width: 70vw;
+    height: 3vh;
+    border: none;
+    border-radius: 25px;
+    background-color: #e4e4e4;
+    text-align: center;
+}
+
+#reset_password_new_password_second {
+    width:70vw;
+    height: 3vh;
+    border: none;
+    border-radius: 25px;
+    background-color: #e4e4e4;
+    text-align: center;
+}
+
+.submit-change-password {
+    background-color: #F09F01;
+    font-size: 2vh;
+    font-family: 'Signika', sans-serif;
+    width: 55vw;
+    height: 5vh;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    display: flex;
+    margin: auto;
+    margin-top: 2vh;
+}
+
+/*************** Page introuvable ****************/
+
+.error-btn-around {
+    display: flex;
+    justify-content: center;
+}
+
+.error-btn {
+    margin-top: 2vh;
+    background-color: #F09F01;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.error-btn a {
+    color: white;
+    font-family: 'Lilita One', cursive;
+    font-size: 2vh;
+    text-decoration: none;
+}
+
+.error-p {
+    margin-left: 9vw;
+    font-family: 'Lilita One', cursive;
+    font-size: 2vh;
+}
+
+
 

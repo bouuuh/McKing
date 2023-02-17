@@ -44,6 +44,9 @@ class AccountHistoryController extends AbstractController
     {
 
         $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
+        if (!$order || $order->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('account_history');
+        }
         $order_details = $this->entityManager->getRepository(OrderDetails::class)->findAll();
         $product = $this->entityManager->getRepository(Product::class)->findAll();
         $cities = $this->entityManager->getRepository(Postal::class)->findAll();
